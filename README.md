@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Youth Engineers Initiative
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Empowering the next generation of leaders through hands-on engineering education and innovation.
 
-## Available Scripts
+## About Us
 
-In the project directory, you can run:
+Youth Engineers Initiative is dedicated to equipping students with critical engineering skills, confidence, and a commitment to innovation. We believe every student has the potential to change the world. Through hands-on workshops, mentorship, and real-world challenges, we inspire and prepare the next generation of engineers.
 
-### `npm start`
+As a student-led, youth-focused organization and 501(c)(3) partner, we aim to reach students in every community and provide them with the tools they need to succeed in engineering and beyond.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Our Mission
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To fill the gap in STEM education by providing accessible, practical engineering experience that builds confidence, capability, and a foundation for lifelong learning and meaningful contributions to society.
 
-### `npm test`
+## What We Offer
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Workshops
+Hands-on learning in collaborative spaces where students build, experiment, and develop practical engineering skills.
 
-### `npm run build`
+### Mentorship
+Connecting students with experienced engineers and industry mentors who guide and inspire the next generation.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Real-World Projects
+Applying engineering knowledge to solve actual problems, helping students see the direct impact of their work.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## By The Numbers
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Founded**: 2025
+- **Leaders & Mentors**: 20+
+- **Students Engaged**: ~200
 
-### `npm run eject`
+## Get Involved
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Whether you're a student interested in learning, an educator looking to partner with us, or a mentor ready to inspire the next generation, there are many ways to get involved!
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Start a Chapter**: Bring Youth Engineers Initiative to your community
+- **Partner With Us**: Collaborate to cultivate critical thinking and innovation in young minds
+- **Contact Us**: Reach out to learn more about opportunities
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Connect With Us
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Follow us on social media and visit our website to learn more about our programs, events, and impact.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Together, we're empowering younger generations to become leaders through engineering and innovation.
