@@ -1,43 +1,882 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youth Engineers Initiative</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'DM Sans', sans-serif; }
+    .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(-4px); transition: all 0.2s ease; }
+    .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    :root { --primary-blue: #1d3952; }
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+    .nav-link.active-page { color: #4338ca; background-color: #eef2ff; border-radius: 6px; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="h-full bg-slate-50">
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <!-- NAVBAR -->
+  <nav class="w-full bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="w-40 flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
+          <i data-lucide="lightbulb" style="width:28px;height:28px;color:var(--primary-blue);"></i>
+          <span class="text-sm font-bold tracking-wide uppercase" style="color:var(--primary-blue);">Youth Engineers Initiative</span>
+        </div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-1" id="desktop-nav">
+          <button onclick="showPage('home')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition">Home</button>
+          <button onclick="showPage('about')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition">About</button>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+          <!-- Chapters dropdown -->
+          <div class="dropdown relative">
+            <button class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition flex items-center gap-1">Chapters <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+            <div class="dropdown-menu absolute top-full left-0 mt-1 w-52 bg-white rounded-lg shadow-lg border border-slate-100 py-2 z-50">
+              <button onclick="showPage('chapters')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Our Chapters</button>
+              <button onclick="showPage('chapters')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Start a Chapter</button>
+            </div>
+          </div>
+
+          <!-- Programs dropdown -->
+          <div class="dropdown relative">
+            <button class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition flex items-center gap-1">Programs <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+            <div class="dropdown-menu absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-slate-100 py-2 z-50">
+              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Workshops</button>
+              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Projects</button>
+              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Events</button>
+              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Curriculum</button>
+            </div>
+          </div>
+
+          <button onclick="showPage('impact')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition">Impact</button>
+
+          <!-- More dropdown -->
+          <div class="dropdown relative">
+            <button class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition flex items-center gap-1">More <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+            <div class="dropdown-menu absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-slate-100 py-2 z-50">
+              <button onclick="showPage('news')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">News</button>
+              <button onclick="showPage('media')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Media Gallery</button>
+            </div>
+          </div>
+
+          <!-- Get Involved dropdown -->
+          <div class="dropdown relative">
+            <button class="px-3 py-2 text-sm font-medium text-white rounded-md transition flex items-center gap-1" style="background-color: var(--primary-blue);">Get Involved <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+            <div class="dropdown-menu absolute top-full right-0 mt-1 w-52 bg-white rounded-lg shadow-lg border border-slate-100 py-2 z-50">
+              <button onclick="showPage('chapters')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Start a Chapter</button>
+              <button onclick="showPage('contact')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Partner With Us</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button id="mobile-toggle" class="md:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-md">
+          <i data-lucide="menu" style="width:24px;height:24px;"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white pb-4">
+      <div class="px-4 pt-3 space-y-1">
+        <button onclick="showPage('home')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">Home</button>
+        <button onclick="showPage('about')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">About</button>
+        <div class="mobile-dropdown">
+          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50 flex items-center justify-between">Chapters <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+          <div class="hidden pl-4 space-y-1">
+            <button onclick="showPage('chapters')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Our Chapters</button>
+            <button onclick="showPage('chapters')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Start a Chapter</button>
+          </div>
+        </div>
+        <div class="mobile-dropdown">
+          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50 flex items-center justify-between">Programs <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+          <div class="hidden pl-4 space-y-1">
+            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Workshops</button>
+            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Projects</button>
+            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Events</button>
+            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Curriculum</button>
+          </div>
+        </div>
+        <button onclick="showPage('impact')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">Impact</button>
+        <div class="mobile-dropdown">
+          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50 flex items-center justify-between">More <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+          <div class="hidden pl-4 space-y-1">
+            <button onclick="showPage('news')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">News</button>
+            <button onclick="showPage('media')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Media Gallery</button>
+          </div>
+        </div>
+        <div class="mobile-dropdown">
+          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-white rounded-md flex items-center justify-between" style="background-color: var(--primary-blue);">Get Involved <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+          <div class="hidden pl-4 space-y-1 pt-1">
+            <button onclick="showPage('chapters')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Start a Chapter</button>
+            <button onclick="showPage('contact')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Partner With Us</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE WRAPPER -->
+  <main>
+
+    <!-- ==================== HOME ==================== -->
+    <section id="page-home" class="page-section active">
+      <!-- Hero -->
+      <div class="relative text-white py-28 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, #ffffff 1px, transparent 1px), radial-gradient(circle at 80% 50%, #ffffff 1px, transparent 1px); background-size: 60px 60px;"></div>
+        <div class="relative max-w-3xl mx-auto">
+          <p class="text-sm uppercase tracking-widest text-blue-200 mb-4 font-medium">Youth Engineers Initiative</p>
+          <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">Empowering the next<br>generation of leaders.</h1>
+          <p class="text-xl text-blue-100 mb-10">One student at a time.</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button onclick="showPage('about')" class="px-8 py-3 bg-white font-semibold rounded-lg transition hover:bg-blue-50" style="color: var(--primary-blue);">Learn More</button>
+            <button onclick="showPage('contact')" class="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg transition hover:bg-white/10">Get Involved</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video placeholder -->
+      <div class="max-w-4xl mx-auto px-6 py-16">
+        <div class="rounded-2xl overflow-hidden bg-slate-200 flex items-center justify-center" style="height:360px;">
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center mx-auto mb-3 cursor-pointer hover:bg-white transition">
+              <i data-lucide="play" style="width:28px;height:28px;color:var(--primary-blue);margin-left:3px;"></i>
+            </div>
+            <p class="text-slate-500 text-sm">[ Video embed placeholder ]</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Equipping Youth -->
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="flex justify-center">
+            <div class="w-56 h-56 rounded-full bg-blue-50 flex items-center justify-center">
+              <i data-lucide="atom" style="width:80px;height:80px;color:var(--primary-blue);"></i>
+            </div>
+          </div>
+          <div>
+            <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-blue);">Equipping Youth to Design <span class="text-indigo-500">the Future</span></h2>
+            <p class="text-slate-600 leading-relaxed mb-6">At the Youth Engineers Initiative, we believe every student has the potential to change the world. Through hands-on engineering workshops, mentorship, and real-world challenges, we teach creativity and problem-solving in the next generation of innovators.</p>
+            <button onclick="showPage('impact')" class="px-6 py-3 text-sm font-semibold text-white rounded-lg transition hover:opacity-90" style="background-color: var(--primary-blue);">SEE OUR IMPACT →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Banner -->
+      <div class="bg-slate-100 py-16 px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-blue);">Lets Create Change Together</h2>
+        <p class="text-slate-600 max-w-xl mx-auto mb-8">Partner with us to cultivate critical thinking, creativity, and a commitment to innovation, preparing students to contribute meaningfully to society.</p>
+        <button onclick="showPage('contact')" class="px-8 py-3 text-white font-semibold rounded-lg transition hover:opacity-90" style="background-color: var(--primary-blue);">Contact Us</button>
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
+            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
+          </div>
+          <div class="flex gap-6 text-sm text-blue-200">
+            <button onclick="showPage('impact')" class="hover:text-white transition">Impact</button>
+            <button onclick="showPage('about')" class="hover:text-white transition">About</button>
+            <button onclick="showPage('contact')" class="hover:text-white transition">Contact</button>
+          </div>
+          <div class="flex gap-3">
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="twitter" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="facebook" style="width:14px;height:14px;"></i></a>
+          </div>
+        </div>
+        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
+        <div class="text-center text-blue-400 text-xs mt-2">© 2025 Youth Engineers Initiative. All rights reserved.</div>
+      </footer>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section id="page-about" class="page-section">
+      <!-- Hero -->
+      <div class="relative text-white py-24 px-6 text-center" style="background-color: var(--primary-blue);">
+        <div class="max-w-3xl mx-auto">
+          <p class="text-sm uppercase tracking-widest text-blue-200 mb-4">Giving kids and young adults a chance to start an engineering career early</p>
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Empowering youth<br>through innovation</h1>
+          <p class="text-blue-200">Providing students with engineering skills and confidence.</p>
+        </div>
+      </div>
+
+      <!-- Our Purpose -->
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold mb-6" style="color: var(--primary-blue);">Our Purpose</h2>
+            <p class="text-slate-600 leading-relaxed mb-4">Being student-led and youth-focused sets us apart as an engineering organization. Young Tech Engineers is a 501c3 partner as of this year as part of our mission to reach the next generation of engineers. But Youth Engineers Initiative aims to go further — to reach students in every community and give them the tools they need to succeed.</p>
+            <p class="text-slate-600 leading-relaxed">Youth Engineers fills the gap in STEM education through workshops, mentorship, and community. We believe that real-world engineering experience builds confidence and capability that lasts a lifetime and prepares young generations for their purpose.</p>
+          </div>
+          <div class="flex justify-center">
+            <div class="w-48 h-48 rounded-full bg-blue-50 flex items-center justify-center">
+              <i data-lucide="handshake" style="width:64px;height:64px;color:var(--primary-blue);"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How We Make It Happen -->
+      <div class="bg-slate-50 py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-center mb-12" style="color: var(--primary-blue);">How we make it <span class="text-indigo-500">happen</span></h2>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-xl p-8 text-center shadow-sm border border-slate-100">
+              <div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="wrench" style="width:28px;height:28px;color:var(--primary-blue);"></i>
+              </div>
+              <h3 class="font-bold text-lg mb-2" style="color: var(--primary-blue);">Workshops</h3>
+              <p class="text-slate-500 text-sm">Hands-on learning in collaborative spaces where students build and experiment.</p>
+            </div>
+            <div class="bg-white rounded-xl p-8 text-center shadow-sm border border-slate-100">
+              <div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="users" style="width:28px;height:28px;color:var(--primary-blue);"></i>
+              </div>
+              <h3 class="font-bold text-lg mb-2" style="color: var(--primary-blue);">Mentorship</h3>
+              <p class="text-slate-500 text-sm">Connecting students with knowledgeable engineers and industry mentors.</p>
+            </div>
+            <div class="bg-white rounded-xl p-8 text-center shadow-sm border border-slate-100">
+              <div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="globe" style="width:28px;height:28px;color:var(--primary-blue);"></i>
+              </div>
+              <h3 class="font-bold text-lg mb-2" style="color: var(--primary-blue);">Real World Projects</h3>
+              <p class="text-slate-500 text-sm">Applying engineering skills in real-world problem-solving contexts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- By the Numbers -->
+      <div class="py-16 px-6 text-white" style="background-color: var(--primary-blue);">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-10">By the Numbers</h2>
+          <div class="grid grid-cols-3 gap-6">
+            <div class="bg-white/10 rounded-xl p-6">
+              <p class="text-xs uppercase tracking-widest text-blue-200 mb-2">Year Established</p>
+              <p class="text-3xl font-bold">2025</p>
+            </div>
+            <div class="bg-white/10 rounded-xl p-6">
+              <p class="text-xs uppercase tracking-widest text-blue-200 mb-2">Leaders &amp; Mentors</p>
+              <p class="text-3xl font-bold">20+</p>
+            </div>
+            <div class="bg-white/10 rounded-xl p-6">
+              <p class="text-xs uppercase tracking-widest text-blue-200 mb-2">Students Engaged</p>
+              <p class="text-3xl font-bold">~200</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partners -->
+      <div class="py-16 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-10" style="color: var(--primary-blue);">Our Partners</h2>
+          <div class="flex justify-center items-center gap-12 flex-wrap">
+            <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs text-center p-2">[ Partner Logo ]</div>
+            <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs text-center p-2">[ Partner Logo ]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Stories -->
+      <div class="bg-slate-50 py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-center mb-10" style="color: var(--primary-blue);">Real Stories, <span class="text-indigo-500">Real Change</span></h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">"[ Student testimonial placeholder — share your experience with Youth Engineers Initiative here. ]"</p>
+              <p class="text-sm font-semibold" style="color: var(--primary-blue);">— Student Name</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">"[ Student testimonial placeholder — share your experience with Youth Engineers Initiative here. ]"</p>
+              <p class="text-sm font-semibold" style="color: var(--primary-blue);">— Student Name</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">"[ Student testimonial placeholder — share your experience with Youth Engineers Initiative here. ]"</p>
+              <p class="text-sm font-semibold" style="color: var(--primary-blue);">— Student Name</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-white py-16 px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-blue);">Lets Create Change Together</h2>
+        <p class="text-slate-500 max-w-xl mx-auto mb-8">Partner with us to cultivate critical thinking, creativity, and a commitment to innovation.</p>
+        <button onclick="showPage('contact')" class="px-8 py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Contact Us</button>
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
+            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
+          </div>
+          <div class="flex gap-6 text-sm text-blue-200">
+            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
+            <button onclick="showPage('about')" class="hover:text-white">About</button>
+          </div>
+          <div class="flex gap-3">
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="twitter" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="facebook" style="width:14px;height:14px;"></i></a>
+          </div>
+        </div>
+        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
+        <div class="text-center text-blue-400 text-xs mt-2">© 2025 Youth Engineers Initiative. All rights reserved.</div>
+      </footer>
+    </section>
+
+    <!-- ==================== TEAM ==================== -->
+    <section id="page-team" class="page-section">
+      <!-- Hero -->
+      <div class="relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="max-w-3xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">The people who bring our<br>mission to life</h1>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-white" style="clip-path: ellipse(55% 100% at 50% 100%);"></div>
+      </div>
+
+      <!-- Team Grid -->
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold mb-10" style="color: var(--primary-blue);">Meet our team</h2>
+
+        <!-- Team member cards - compact grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16">
+          <!-- Each card: swap out placeholder with real photo/info -->
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
+              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            </div>
+            <p class="font-bold text-sm" style="color: var(--primary-blue);">Chris Longo</p>
+            <p class="text-xs text-slate-400">Role Here</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
+              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            </div>
+            <p class="font-bold text-sm" style="color: var(--primary-blue);">Tony Lin</p>
+            <p class="text-xs text-slate-400">Role Here</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
+              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            </div>
+            <p class="font-bold text-sm" style="color: var(--primary-blue);">Liam Hong</p>
+            <p class="text-xs text-slate-400">Role Here</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
+              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            </div>
+            <p class="font-bold text-sm" style="color: var(--primary-blue);">Zack Longo</p>
+            <p class="text-xs text-slate-400">Role Here</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
+              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            </div>
+            <p class="font-bold text-sm" style="color: var(--primary-blue);">Leo Lin</p>
+            <p class="text-xs text-slate-400">Role Here</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
+              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            </div>
+            <p class="font-bold text-sm" style="color: var(--primary-blue);">Hunter Highland</p>
+            <p class="text-xs text-slate-400">Role Here</p>
+          </div>
+        </div>
+
+        <!-- Full bios -->
+        <div class="space-y-10">
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-8 flex flex-col md:flex-row gap-8 items-center md:items-start">
+            <div class="w-40 h-48 rounded-xl bg-slate-200 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="user" style="width:40px;height:40px;color:#94a3b8;"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-1" style="color: var(--primary-blue);">Chris Longo</h3>
+              <p class="text-sm text-indigo-400 font-medium mb-4">[ Role / Title Here ]</p>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">[ Bio placeholder — Add a paragraph describing Chris's background, role, and passion for the Youth Engineers Initiative mission. ]</p>
+              <button class="px-4 py-2 text-sm border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50">More →</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-8 flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
+            <div class="w-40 h-48 rounded-xl bg-slate-200 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="user" style="width:40px;height:40px;color:#94a3b8;"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-1" style="color: var(--primary-blue);">Tony Lin</h3>
+              <p class="text-sm text-indigo-400 font-medium mb-4">[ Role / Title Here ]</p>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">[ Bio placeholder — Add a paragraph describing Tony's background, role, and passion for the Youth Engineers Initiative mission. ]</p>
+              <button class="px-4 py-2 text-sm border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50">More →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter network -->
+        <div class="mt-16 text-center py-12 bg-slate-50 rounded-2xl">
+          <h2 class="text-2xl font-bold mb-2" style="color: var(--primary-blue);">Explore Our Chapter Network</h2>
+          <p class="text-slate-500 mb-6">Find a chapter near you or start your own.</p>
+          <button onclick="showPage('chapters')" class="px-6 py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">View Chapters →</button>
+        </div>
+
+        <!-- Ready CTA -->
+        <div class="mt-16 text-center py-12">
+          <h2 class="text-2xl font-bold mb-6" style="color: var(--primary-blue);">Ready to make an impact?</h2>
+          <button onclick="showPage('contact')" class="px-8 py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Join Today!</button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
+            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
+          </div>
+          <div class="flex gap-6 text-sm text-blue-200">
+            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
+            <button onclick="showPage('about')" class="hover:text-white">About</button>
+          </div>
+          <div class="flex gap-3">
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+          </div>
+        </div>
+        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
+      </footer>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section id="page-contact" class="page-section">
+      <div class="min-h-screen bg-slate-50">
+        <div class="max-w-6xl mx-auto px-6 py-16">
+          <div class="grid md:grid-cols-2 gap-12 items-start">
+            <div>
+              <h1 class="text-4xl font-bold mb-4" style="color: var(--primary-blue);">We'd Love to Hear From You!</h1>
+              <p class="text-slate-500 mb-8">Whether you're a student, educator, or organization — we'd love to connect with you and explore how we can work together.</p>
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1">Name</label>
+                  <input type="text" placeholder="First name" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">First name</label>
+                    <input type="text" placeholder="First" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Last name</label>
+                    <input type="text" placeholder="Last" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1">Email address</label>
+                  <input type="email" placeholder="email@example.com" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1">Message</label>
+                  <textarea rows="5" placeholder="Your message..." class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none"></textarea>
+                </div>
+                <button class="w-full py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Submit</button>
+              </div>
+            </div>
+            <div class="flex flex-col gap-6">
+              <div class="w-full h-52 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400">
+                <i data-lucide="mail" style="width:48px;height:48px;"></i>
+              </div>
+              <div class="w-full h-52 bg-slate-100 rounded-xl flex items-center justify-center text-slate-400">
+                <i data-lucide="clipboard-check" style="width:48px;height:48px;"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lets Create Change -->
+          <div class="mt-16 text-center py-12 bg-white rounded-2xl shadow-sm border border-slate-100">
+            <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-blue);">Lets Create Change Together</h2>
+            <p class="text-slate-500 mb-6 max-w-xl mx-auto">Partner with us to cultivate critical thinking, creativity, and a commitment to innovation.</p>
+            <div class="inline-block px-6 py-3 bg-slate-100 rounded-xl text-slate-500 text-sm font-medium">Thank You!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
+            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
+          </div>
+          <div class="flex gap-6 text-sm text-blue-200">
+            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
+            <button onclick="showPage('about')" class="hover:text-white">About</button>
+          </div>
+          <div class="flex gap-3">
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+          </div>
+        </div>
+        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
+      </footer>
+    </section>
+
+    <!-- ==================== PROGRAMS / RESOURCES ==================== -->
+    <section id="page-programs" class="page-section">
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <h1 class="text-4xl font-bold text-center mb-3" style="color: var(--primary-blue);">Resources</h1>
+        <p class="text-center text-slate-500 mb-12">As a Youth Engineers Initiative member, take resources from your community with this official project slideshow, linked here.</p>
+
+        <div class="space-y-10">
+          <!-- Wind Turbine -->
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row gap-6 items-center">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Wind Turbine</h3>
+              <p class="text-slate-500 text-sm leading-relaxed mb-4">Wind turbines are a powerful source of renewable energy. Learn how to create and test your own model of one! For Educators, this is a great resource for renewable energy. Learn the fundamentals of our earthquake-resistant engineering here.</p>
+              <a href="#" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
+            </div>
+            <div class="w-full md:w-56 h-36 bg-slate-200 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden">
+              <i data-lucide="wind" style="width:40px;height:40px;color:#94a3b8;"></i>
+            </div>
+          </div>
+
+          <!-- Truss Bridges -->
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row-reverse gap-6 items-center">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Truss Bridges</h3>
+              <p class="text-slate-500 text-sm leading-relaxed mb-4">The bridges we drive over every day are carefully designed with engineering, so maybe re-create designs from bridge today!</p>
+              <a href="#" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
+            </div>
+            <div class="w-full md:w-56 h-36 bg-slate-200 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i data-lucide="bridge" style="width:40px;height:40px;color:#94a3b8;"></i>
+            </div>
+          </div>
+
+          <!-- Earthquake Tower -->
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row gap-6 items-center">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Earthquake Tower</h3>
+              <p class="text-slate-500 text-sm leading-relaxed mb-4">Wind turbines are a powerful source of renewable energy. Learn how to create and test your own model of one! For Educators, this is a significant resource for renewable energy. Learn the fundamentals of our earthquake-resistant engineering here.</p>
+              <a href="#" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
+            </div>
+            <div class="w-full md:w-56 h-36 bg-slate-200 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i data-lucide="building-2" style="width:40px;height:40px;color:#94a3b8;"></i>
+            </div>
+          </div>
+
+          <!-- Balloon Drop -->
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row-reverse gap-6 items-center">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Balloon Drop</h3>
+              <p class="text-slate-500 text-sm leading-relaxed mb-4">A science physics class project. The balloon drop explores Newtonian mechanics that physicists find fascinating. Build on today.</p>
+              <a href="#" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
+            </div>
+            <div class="w-full md:w-56 h-36 bg-slate-200 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i data-lucide="circle-dot" style="width:40px;height:40px;color:#94a3b8;"></i>
+            </div>
+          </div>
+
+          <!-- Financial Literacy -->
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row gap-6 items-center">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Financial Literacy Economics</h3>
+              <p class="text-slate-500 text-sm leading-relaxed mb-4">Being financially literate is vital for anybody in our modern day society. For engineers in particular, the journey with this course!</p>
+              <a href="#" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
+            </div>
+            <div class="w-full md:w-56 h-36 bg-slate-200 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i data-lucide="piggy-bank" style="width:40px;height:40px;color:#94a3b8;"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
+            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
+          </div>
+          <div class="flex gap-6 text-sm text-blue-200">
+            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
+            <button onclick="showPage('about')" class="hover:text-white">About</button>
+          </div>
+          <div class="flex gap-3">
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+          </div>
+        </div>
+        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
+      </footer>
+    </section>
+
+    <!-- ==================== CHAPTERS ==================== -->
+    <section id="page-chapters" class="page-section">
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <h1 class="text-4xl font-bold mb-3" style="color: var(--primary-blue);">School Chapters</h1>
+        <p class="text-slate-500 mb-12 max-w-3xl">Youth Engineers Initiative School Chapters are independent, volunteer-led organizations that act as local branches of the Youth Engineers Initiative. As part of our mission to inspire the next generation of engineers, the Youth Engineers Initiative will help to expand efforts to a wider home audience.</p>
+
+        <!-- Existing Chapters -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--primary-blue);">Existing Chapters</h2>
+          <p class="text-slate-500 text-sm mb-8">Please check if your school already has a chapter. The Youth Engineers Initiative School Chapters for the 2025–2026 school year are at the following schools (more to come):</p>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+              <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-3 flex items-center justify-center">
+                <i data-lucide="school" style="width:28px;height:28px;color:var(--primary-blue);"></i>
+              </div>
+              <p class="font-bold text-sm" style="color: var(--primary-blue);">Sage Hill School</p>
+              <p class="text-xs text-slate-400">Newport Beach, CA</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+              <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-3 flex items-center justify-center">
+                <i data-lucide="school" style="width:28px;height:28px;color:var(--primary-blue);"></i>
+              </div>
+              <p class="font-bold text-sm" style="color: var(--primary-blue);">Tompkins High School</p>
+              <p class="text-xs text-slate-400">Fort Bend County, TX</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+              <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-3 flex items-center justify-center">
+                <i data-lucide="school" style="width:28px;height:28px;color:var(--primary-blue);"></i>
+              </div>
+              <p class="font-bold text-sm" style="color: var(--primary-blue);">Doral Academy</p>
+              <p class="text-xs text-slate-400">Doral Point, CO</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Start Your Own -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold mb-3" style="color: var(--primary-blue);">Start Your Own Chapter</h2>
+          <p class="text-slate-500 text-sm mb-6">If you are a high school student and are interested in starting a Youth Engineers Initiative School Chapter, follow the instructions below:</p>
+          <div class="bg-white rounded-xl border border-slate-200 p-8">
+            <h3 class="font-bold text-lg mb-4" style="color: var(--primary-blue);">Making a School Chapter Guide</h3>
+            <div class="space-y-3 text-sm text-slate-600">
+              <p><span class="font-semibold text-slate-800">Step 1 — Find Your YEI Team:</span> Recruit at least 3–5 passionate students who want to lead your chapter. Designate roles: President, VP, Secretary, and Outreach Lead.</p>
+              <p><span class="font-semibold text-slate-800">Step 2 — Get School Approval:</span> Meet with your school's club coordinator or principal. Submit a club charter or application form. Get a faculty advisor to sponsor your chapter.</p>
+              <p><span class="font-semibold text-slate-800">Step 3 — Register with YEI:</span> Complete the official YEI Chapter Registration Form. Submit a chapter plan including meeting schedule, goals, and planned activities.</p>
+              <p><span class="font-semibold text-slate-800">Step 4 — Plan Your First Meeting:</span> Announce your chapter on social media and school bulletin boards. Organize a launch event, workshop, or info session. Connect with other chapter leaders across the network.</p>
+              <p><span class="font-semibold text-slate-800">Step 5 — Run Your Chapter:</span> Hold regular meetings and workshops. Complete at least one community project per semester. Submit reports to YEI National and maintain your chapter status.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Why Start -->
+        <div>
+          <h2 class="text-2xl font-bold mb-6" style="color: var(--primary-blue);">Why Start a Chapter?</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+              <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-3">
+                <i data-lucide="trophy" style="width:20px;height:20px;color:var(--primary-blue);"></i>
+              </div>
+              <h3 class="font-bold mb-2" style="color: var(--primary-blue);">Leadership Experience</h3>
+              <p class="text-slate-500 text-sm">By starting a Youth Engineers Initiative School Chapter, students gain leadership experience in areas such as after-school programs, organizing meetings, and running a chapter.</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+              <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-3">
+                <i data-lucide="network" style="width:20px;height:20px;color:var(--primary-blue);"></i>
+              </div>
+              <h3 class="font-bold mb-2" style="color: var(--primary-blue);">Community Network</h3>
+              <p class="text-slate-500 text-sm">Existing Chapters provide students a platform to showcase engineering projects, earn recognition, and connect with peers across regions.</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+              <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-3">
+                <i data-lucide="star" style="width:20px;height:20px;color:var(--primary-blue);"></i>
+              </div>
+              <h3 class="font-bold mb-2" style="color: var(--primary-blue);">National Support</h3>
+              <p class="text-slate-500 text-sm">Join the University of Members — Ambitious students starting a chapter will gain access to an exclusive community of fellow Youth Engineers Initiative chapter leaders across the nation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
+            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
+          </div>
+          <div class="flex gap-6 text-sm text-blue-200">
+            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
+            <button onclick="showPage('about')" class="hover:text-white">About</button>
+          </div>
+          <div class="flex gap-3">
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+          </div>
+        </div>
+        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
+      </footer>
+    </section>
+
+    <!-- ==================== IMPACT ==================== -->
+    <section id="page-impact" class="page-section">
+      <div class="py-20 px-6 text-white text-center" style="background-color: var(--primary-blue);">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Impact</h1>
+        <p class="text-blue-200 max-w-xl mx-auto">Measuring the change we make one student at a time.</p>
+      </div>
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+            <p class="text-3xl font-bold mb-1" style="color: var(--primary-blue);">200+</p>
+            <p class="text-slate-500 text-sm">Students Reached</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+            <p class="text-3xl font-bold mb-1" style="color: var(--primary-blue);">3</p>
+            <p class="text-slate-500 text-sm">Active Chapters</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+            <p class="text-3xl font-bold mb-1" style="color: var(--primary-blue);">5+</p>
+            <p class="text-slate-500 text-sm">Curriculum Resources</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+            <p class="text-3xl font-bold mb-1" style="color: var(--primary-blue);">2025</p>
+            <p class="text-slate-500 text-sm">Year Founded</p>
+          </div>
+        </div>
+
+        <!-- Impact Stories placeholder -->
+        <h2 class="text-2xl font-bold mb-6" style="color: var(--primary-blue);">Impact Stories</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+            <p class="text-slate-500 text-sm leading-relaxed">[ Impact story placeholder — describe how the program changed a student's path or a chapter's community outcome. ]</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+            <p class="text-slate-500 text-sm leading-relaxed">[ Impact story placeholder — describe a workshop outcome, project result, or partnership success story. ]</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
+            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
+          </div>
+          <div class="flex gap-6 text-sm text-blue-200">
+            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
+            <button onclick="showPage('about')" class="hover:text-white">About</button>
+          </div>
+          <div class="flex gap-3">
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+          </div>
+        </div>
+        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
+      </footer>
+    </section>
+
+    <!-- ==================== NEWS ==================== -->
+    <section id="page-news" class="page-section">
+      <div class="py-20 px-6 text-white text-center" style="background-color: var(--primary-blue);">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">News</h1>
+        <p class="text-blue-200">Latest updates from Youth Engineers Initiative.</p>
+      </div>
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="h-40 bg-slate-200 flex items-center justify-center"><i data-lucide="newspaper" style="width:32px;height:32px;color:#94a3b8;"></i></div>
+            <div class="p-5">
+              <p class="text-xs text-slate-400 mb-2">[ Date ]</p>
+              <h3 class="font-bold mb-2" style="color: var(--primary-blue);">[ News Article Title ]</h3>
+              <p class="text-slate-500 text-sm">[ Short summary of news article or announcement. ]</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="h-40 bg-slate-200 flex items-center justify-center"><i data-lucide="newspaper" style="width:32px;height:32px;color:#94a3b8;"></i></div>
+            <div class="p-5">
+              <p class="text-xs text-slate-400 mb-2">[ Date ]</p>
+              <h3 class="font-bold mb-2" style="color: var(--primary-blue);">[ News Article Title ]</h3>
+              <p class="text-slate-500 text-sm">[ Short summary of news article or announcement. ]</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="h-40 bg-slate-200 flex items-center justify-center"><i data-lucide="newspaper" style="width:32px;height:32px;color:#94a3b8;"></i></div>
+            <div class="p-5">
+              <p class="text-xs text-slate-400 mb-2">[ Date ]</p>
+              <h3 class="font-bold mb-2" style="color: var(--primary-blue);">[ News Article Title ]</h3>
+              <p class="text-slate-500 text-sm">[ Short summary of news article or announcement. ]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2"><i data-lucide="lightbulb" style="width:22px;height:22px;"></i><span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span></div>
+          <div class="flex gap-6 text-sm text-blue-200"><button onclick="showPage('impact')" class="hover:text-white">Impact</button><button onclick="showPage('about')" class="hover:text-white">About</button></div>
+        </div>
+        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
+      </footer>
+    </section>
+
+    <!-- ==================== MEDIA GALLERY ==================== -->
+    <section id="page-media" class="page-section">
+      <div class="py-20 px-6 text-white text-center" style="background-color: var(--primary-blue);">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Media Gallery</h1>
+        <p class="text-blue-200">Photos and videos from our programs and chapters.</p>
+      </div>
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
+          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
+          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
+          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
+          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
+          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2"><i data-lucide="lightbulb" style="width:22px;height:22px;"></i><span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span></div>
+          <div class="flex gap-6 text-sm text-blue-200"><button onclick="showPage('impact')" class="hover:text-white">Impact</button><button onclick="showPage('about')" class="hover:text-white">About</button></div>
+        </div>
+        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
+      </footer>
+    </section>
+
+  </main>
+
+  <script>
+    // Mobile toggle
+    document.getElementById('mobile-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    lucide.createIcons();
+
+    function showPage(pageId) {
+      // Hide all sections
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      // Show target
+      const target = document.getElementById('page-' + pageId);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      // Close mobile menu
+      document.getElementById('mobile-menu').classList.add('hidden');
+      // Re-run lucide for newly shown icons
+      lucide.createIcons();
+    }
+  </script>
+</body>
 </html>
