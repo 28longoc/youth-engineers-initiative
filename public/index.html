@@ -16,6 +16,43 @@
     .page-section.active { display: block; }
     .nav-link.active-page { color: #4338ca; background-color: #eef2ff; border-radius: 6px; }
     html { scroll-behavior: smooth; }
+    body { overflow-x: hidden; }
+    .parallax-frame { position: relative; overflow: hidden; isolation: isolate; }
+    .parallax-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+    }
+    .parallax-layer--soft {
+      opacity: 0.22;
+      background-image:
+        radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.45) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.35) 0 3px, transparent 4px),
+        radial-gradient(circle at 66% 78%, rgba(255, 255, 255, 0.28) 0 2px, transparent 3px);
+    }
+    .parallax-layer--orb::before,
+    .parallax-layer--orb::after {
+      content: '';
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(2px);
+    }
+    .parallax-layer--orb::before {
+      width: 18rem;
+      height: 18rem;
+      left: -4rem;
+      top: -4rem;
+      background: radial-gradient(circle, rgba(255,255,255,0.22), rgba(255,255,255,0));
+    }
+    .parallax-layer--orb::after {
+      width: 14rem;
+      height: 14rem;
+      right: -3rem;
+      bottom: -4rem;
+      background: radial-gradient(circle, rgba(191, 219, 254, 0.24), rgba(191, 219, 254, 0));
+    }
   </style>
 </head>
 <body class="h-full bg-slate-50">
@@ -129,7 +166,9 @@
     <!-- ==================== HOME ==================== -->
     <section id="page-home" class="page-section active">
       <!-- Hero -->
-      <div class="relative text-white py-28 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+      <div class="parallax-frame relative text-white py-28 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.18"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.12"></div>
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, #ffffff 1px, transparent 1px), radial-gradient(circle at 80% 50%, #ffffff 1px, transparent 1px); background-size: 60px 60px;"></div>
         <div class="relative max-w-3xl mx-auto">
           <p class="text-sm uppercase tracking-widest text-blue-200 mb-4 font-medium">Youth Engineers Initiative</p>
@@ -204,7 +243,9 @@
     <!-- ==================== ABOUT ==================== -->
     <section id="page-about" class="page-section">
       <!-- Hero -->
-      <div class="relative text-white py-24 px-6 text-center" style="background-color: var(--primary-blue);">
+      <div class="parallax-frame relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.14"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.1"></div>
         <div class="max-w-3xl mx-auto">
           <p class="text-sm uppercase tracking-widest text-blue-200 mb-4">Giving kids and young adults a chance to start an engineering career early</p>
           <h1 class="text-4xl md:text-5xl font-bold mb-4">Empowering youth<br>through innovation</h1>
@@ -217,8 +258,18 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-3xl font-bold mb-6" style="color: var(--primary-blue);">Our Purpose</h2>
-            <p class="text-slate-600 leading-relaxed mb-4">Being student-led and youth-focused sets us apart as an engineering organization. Young Tech Engineers is a 501c3 partner as of this year as part of our mission to reach the next generation of engineers. But Youth Engineers Initiative aims to go further — to reach students in every community and give them the tools they need to succeed.</p>
-            <p class="text-slate-600 leading-relaxed">Youth Engineers fills the gap in STEM education through workshops, mentorship, and community. We believe that real-world engineering experience builds confidence and capability that lasts a lifetime and prepares young generations for their purpose.</p>
+            <p class="text-slate-600 leading-relaxed mb-4">Many students lack early access to hands-on engineering
+experiences, leaving them unaware of their potential in STEM.
+This gap limits creative exploration and problem-solving at a
+critical age.
+
+
+</p>
+            <p class="text-slate-600 leading-relaxed">Youth Engineers Initiative exists to build creative confidence
+and fill the gap in early STEM education through engaging,
+hands-on workshops that inspire curiosity and empower the
+next generation of innovators.
+</p>
           </div>
           <div class="flex justify-center">
             <div class="w-48 h-48 rounded-full bg-blue-50 flex items-center justify-center">
@@ -344,7 +395,9 @@
     <!-- ==================== TEAM ==================== -->
     <section id="page-team" class="page-section">
       <!-- Hero -->
-      <div class="relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+      <div class="parallax-frame relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
         <div class="max-w-3xl mx-auto">
           <h1 class="text-4xl md:text-5xl font-bold mb-4">The people who bring our<br>mission to life</h1>
         </div>
@@ -726,7 +779,9 @@
 
     <!-- ==================== IMPACT ==================== -->
     <section id="page-impact" class="page-section">
-      <div class="py-20 px-6 text-white text-center" style="background-color: var(--primary-blue);">
+      <div class="parallax-frame py-20 px-6 text-white text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Impact</h1>
         <p class="text-blue-200 max-w-xl mx-auto">Measuring the change we make one student at a time.</p>
       </div>
@@ -785,7 +840,9 @@
 
     <!-- ==================== NEWS ==================== -->
     <section id="page-news" class="page-section">
-      <div class="py-20 px-6 text-white text-center" style="background-color: var(--primary-blue);">
+      <div class="parallax-frame py-20 px-6 text-white text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">News</h1>
         <p class="text-blue-200">Latest updates from Youth Engineers Initiative.</p>
       </div>
@@ -829,7 +886,9 @@
 
     <!-- ==================== MEDIA GALLERY ==================== -->
     <section id="page-media" class="page-section">
-      <div class="py-20 px-6 text-white text-center" style="background-color: var(--primary-blue);">
+      <div class="parallax-frame py-20 px-6 text-white text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Media Gallery</h1>
         <p class="text-blue-200">Photos and videos from our programs and chapters.</p>
       </div>
@@ -863,6 +922,44 @@
 
     lucide.createIcons();
 
+    const parallaxLayers = Array.from(document.querySelectorAll('[data-parallax-speed]'));
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let parallaxFrame = null;
+
+    function updateParallax() {
+      parallaxFrame = null;
+
+      if (prefersReducedMotion || parallaxLayers.length === 0) {
+        return;
+      }
+
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      parallaxLayers.forEach((layer) => {
+        const speed = Number(layer.dataset.parallaxSpeed || 0);
+        const bounds = layer.parentElement.getBoundingClientRect();
+        const sectionCenter = bounds.top + window.scrollY + bounds.height / 2;
+        const viewportCenter = scrollY + viewportHeight / 2;
+        const distance = viewportCenter - sectionCenter;
+        const offset = Math.max(-60, Math.min(60, distance * speed * 0.08));
+
+        layer.style.transform = `translate3d(0, ${offset}px, 0)`;
+      });
+    }
+
+    function requestParallaxUpdate() {
+      if (parallaxFrame !== null || prefersReducedMotion) {
+        return;
+      }
+
+      parallaxFrame = window.requestAnimationFrame(updateParallax);
+    }
+
+    window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+    window.addEventListener('resize', requestParallaxUpdate);
+    requestParallaxUpdate();
+
     function showPage(pageId) {
       // Hide all sections
       document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
@@ -876,6 +973,7 @@
       document.getElementById('mobile-menu').classList.add('hidden');
       // Re-run lucide for newly shown icons
       lucide.createIcons();
+      requestParallaxUpdate();
     }
   </script>
 </body>
