@@ -1,5 +1,14 @@
+:root {
+  --dark-blue: #1d3952;
+  --light-blue: #5999c4;
+  --white: #ffffff;
+}
+
 .App {
   text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--dark-blue) 0%, #234764 52%, var(--light-blue) 100%);
+  color: var(--white);
 }
 
 .App-logo {
@@ -14,18 +23,18 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: transparent;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--white);
 }
 
 .App-link {
-  color: #61dafb;
+  color: var(--light-blue);
 }
 
 @keyframes App-logo-spin {

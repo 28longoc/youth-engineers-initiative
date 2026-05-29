@@ -98,23 +98,16 @@
           <button onclick="showPage('home')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition">Home</button>
           <button onclick="showPage('about')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition">About</button>
 
-          <!-- Chapters dropdown -->
-          <div class="dropdown relative">
-            <button class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition flex items-center gap-1">Chapters <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
-            <div class="dropdown-menu absolute top-full left-0 mt-1 w-52 bg-white rounded-lg shadow-lg border border-slate-100 py-2 z-50">
-              <button onclick="showPage('chapters')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Our Chapters</button>
-              <button onclick="showPage('chapters')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Start a Chapter</button>
-            </div>
-          </div>
+          <button onclick="showPage('chapters')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition">Chapters</button>
 
-          <!-- Programs dropdown -->
+          <!-- Resources dropdown (was Programs) -->
           <div class="dropdown relative">
-            <button class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition flex items-center gap-1">Programs <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+            <button class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition flex items-center gap-1">Resources <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
             <div class="dropdown-menu absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-slate-100 py-2 z-50">
-              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Workshops</button>
-              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Projects</button>
-              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Events</button>
-              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Curriculum</button>
+              <button onclick="showPage('resources')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Workshops</button>
+              <button onclick="showPage('resources')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Projects</button>
+              <button onclick="showPage('resources')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Events</button>
+              <button onclick="showPage('resources')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Curriculum</button>
             </div>
           </div>
 
@@ -151,20 +144,14 @@
       <div class="px-4 pt-3 space-y-1">
         <button onclick="showPage('home')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">Home</button>
         <button onclick="showPage('about')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">About</button>
+        <button onclick="showPage('chapters')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">Chapters</button>
         <div class="mobile-dropdown">
-          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50 flex items-center justify-between">Chapters <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50 flex items-center justify-between">Resources <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
           <div class="hidden pl-4 space-y-1">
-            <button onclick="showPage('chapters')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Our Chapters</button>
-            <button onclick="showPage('chapters')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Start a Chapter</button>
-          </div>
-        </div>
-        <div class="mobile-dropdown">
-          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50 flex items-center justify-between">Programs <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
-          <div class="hidden pl-4 space-y-1">
-            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Workshops</button>
-            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Projects</button>
-            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Events</button>
-            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Curriculum</button>
+            <button onclick="showPage('resources')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Workshops</button>
+            <button onclick="showPage('resources')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Projects</button>
+            <button onclick="showPage('resources')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Events</button>
+            <button onclick="showPage('resources')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Curriculum</button>
           </div>
         </div>
         <button onclick="showPage('impact')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">Impact</button>
@@ -622,8 +609,8 @@ next generation of innovators.
       </div>
     </section>
 
-    <!-- ==================== PROGRAMS / RESOURCES ==================== -->
-    <section id="page-programs" class="page-section">
+    <!-- ==================== RESOURCES ==================== -->
+    <section id="page-resources" class="page-section">
       <div class="section-inner">
       <div class="max-w-6xl mx-auto px-6 py-16">
         <h1 class="text-4xl font-bold text-center mb-3" style="color: var(--primary-blue);">Resources</h1>
@@ -933,7 +920,7 @@ next generation of innovators.
         <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
         <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Media Gallery</h1>
-        <p class="text-blue-200">Photos and videos from our programs and chapters.</p>
+        <p class="text-blue-200">Photos and videos from our resources and chapters.</p>
       </div>
       <div class="max-w-6xl mx-auto px-6 py-16">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
