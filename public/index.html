@@ -12,10 +12,73 @@
     .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(-4px); transition: all 0.2s ease; }
     .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
     :root { --primary-blue: #1d3952; }
-    .page-section { display: none; }
-    .page-section.active { display: block; }
+    main {
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      scroll-padding-top: 0;
+    }
+    main {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    main::-webkit-scrollbar { width: 0; height: 0; }
+    .page-section {
+      display: block;
+      height: calc(100vh - 64px);
+      overflow: hidden;
+      box-sizing: border-box;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    /* Inner wrapper allows internal smooth scrolling within a section */
+    .section-inner {
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
     .nav-link.active-page { color: #4338ca; background-color: #eef2ff; border-radius: 6px; }
-    html { scroll-behavior: smooth; }
+    /* Lock window scrolling: make main the only scroll container */
+    html, body { height: 100%; scroll-behavior: smooth; overflow: hidden; }
+    .parallax-frame { position: relative; overflow: hidden; isolation: isolate; }
+    .parallax-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+    }
+    .parallax-layer--soft {
+      opacity: 0.22;
+      background-image:
+        radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.45) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.35) 0 3px, transparent 4px),
+        radial-gradient(circle at 66% 78%, rgba(255, 255, 255, 0.28) 0 2px, transparent 3px);
+    }
+    .parallax-layer--orb::before,
+    .parallax-layer--orb::after {
+      content: '';
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(2px);
+    }
+    .parallax-layer--orb::before {
+      width: 18rem;
+      height: 18rem;
+      left: -4rem;
+      top: -4rem;
+      background: radial-gradient(circle, rgba(255,255,255,0.22), rgba(255,255,255,0));
+    }
+    .parallax-layer--orb::after {
+      width: 14rem;
+      height: 14rem;
+      right: -3rem;
+      bottom: -4rem;
+      background: radial-gradient(circle, rgba(191, 219, 254, 0.24), rgba(191, 219, 254, 0));
+    }
   </style>
 </head>
 <body class="h-full bg-slate-50">
@@ -35,23 +98,16 @@
           <button onclick="showPage('home')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition">Home</button>
           <button onclick="showPage('about')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition">About</button>
 
-          <!-- Chapters dropdown -->
-          <div class="dropdown relative">
-            <button class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition flex items-center gap-1">Chapters <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
-            <div class="dropdown-menu absolute top-full left-0 mt-1 w-52 bg-white rounded-lg shadow-lg border border-slate-100 py-2 z-50">
-              <button onclick="showPage('chapters')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Our Chapters</button>
-              <button onclick="showPage('chapters')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Start a Chapter</button>
-            </div>
-          </div>
+          <button onclick="showPage('chapters')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition">Chapters</button>
 
-          <!-- Programs dropdown -->
+          <!-- Resources dropdown (was Programs) -->
           <div class="dropdown relative">
-            <button class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition flex items-center gap-1">Programs <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+            <button class="px-3 py-2 text-sm font-medium text-slate-700 hover:text-indigo-700 rounded-md hover:bg-indigo-50 transition flex items-center gap-1">Resources <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
             <div class="dropdown-menu absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-slate-100 py-2 z-50">
-              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Workshops</button>
-              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Projects</button>
-              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Events</button>
-              <button onclick="showPage('programs')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Curriculum</button>
+              <button onclick="showPage('resources')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Workshops</button>
+              <button onclick="showPage('resources')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Projects</button>
+              <button onclick="showPage('resources')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Events</button>
+              <button onclick="showPage('resources')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Curriculum</button>
             </div>
           </div>
 
@@ -88,20 +144,14 @@
       <div class="px-4 pt-3 space-y-1">
         <button onclick="showPage('home')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">Home</button>
         <button onclick="showPage('about')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">About</button>
+        <button onclick="showPage('chapters')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">Chapters</button>
         <div class="mobile-dropdown">
-          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50 flex items-center justify-between">Chapters <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
+          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50 flex items-center justify-between">Resources <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
           <div class="hidden pl-4 space-y-1">
-            <button onclick="showPage('chapters')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Our Chapters</button>
-            <button onclick="showPage('chapters')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Start a Chapter</button>
-          </div>
-        </div>
-        <div class="mobile-dropdown">
-          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50 flex items-center justify-between">Programs <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
-          <div class="hidden pl-4 space-y-1">
-            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Workshops</button>
-            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Projects</button>
-            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Events</button>
-            <button onclick="showPage('programs')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Curriculum</button>
+            <button onclick="showPage('resources')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Workshops</button>
+            <button onclick="showPage('resources')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Projects</button>
+            <button onclick="showPage('resources')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Events</button>
+            <button onclick="showPage('resources')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Curriculum</button>
           </div>
         </div>
         <button onclick="showPage('impact')" class="block w-full text-left px-3 py-2 text-sm font-medium text-slate-700 rounded-md hover:bg-indigo-50">Impact</button>
@@ -128,8 +178,11 @@
 
     <!-- ==================== HOME ==================== -->
     <section id="page-home" class="page-section active">
+      <div class="section-inner">
       <!-- Hero -->
-      <div class="relative text-white py-28 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+      <div class="parallax-frame relative text-white py-28 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.18"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.12"></div>
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, #ffffff 1px, transparent 1px), radial-gradient(circle at 80% 50%, #ffffff 1px, transparent 1px); background-size: 60px 60px;"></div>
         <div class="relative max-w-3xl mx-auto">
           <p class="text-sm uppercase tracking-widest text-blue-200 mb-4 font-medium">Youth Engineers Initiative</p>
@@ -149,7 +202,7 @@
             <div class="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center mx-auto mb-3 cursor-pointer hover:bg-white transition">
               <i data-lucide="play" style="width:28px;height:28px;color:var(--primary-blue);margin-left:3px;"></i>
             </div>
-            <p class="text-slate-500 text-sm">[ Video embed placeholder ]</p>
+            <!-- video placeholder removed -->
           </div>
         </div>
       </div>
@@ -170,12 +223,7 @@
         </div>
       </div>
 
-      <!-- CTA Banner -->
-      <div class="bg-slate-100 py-16 px-6 text-center">
-        <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-blue);">Lets Create Change Together</h2>
-        <p class="text-slate-600 max-w-xl mx-auto mb-8">Partner with us to cultivate critical thinking, creativity, and a commitment to innovation, preparing students to contribute meaningfully to society.</p>
-        <button onclick="showPage('contact')" class="px-8 py-3 text-white font-semibold rounded-lg transition hover:opacity-90" style="background-color: var(--primary-blue);">Contact Us</button>
-      </div>
+      <!-- CTA Banner removed -->
 
       <!-- Footer -->
       <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
@@ -199,16 +247,19 @@
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
         <div class="text-center text-blue-400 text-xs mt-2">© 2025 Youth Engineers Initiative. All rights reserved.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== ABOUT ==================== -->
     <section id="page-about" class="page-section">
+      <div class="section-inner">
       <!-- Hero -->
-      <div class="relative text-white py-24 px-6 text-center" style="background-color: var(--primary-blue);">
+      <div class="parallax-frame relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.14"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.1"></div>
         <div class="max-w-3xl mx-auto">
-          <p class="text-sm uppercase tracking-widest text-blue-200 mb-4">Giving kids and young adults a chance to start an engineering career early</p>
-          <h1 class="text-4xl md:text-5xl font-bold mb-4">Empowering youth<br>through innovation</h1>
-          <p class="text-blue-200">Providing students with engineering skills and confidence.</p>
+          <h1 class="text-5xl md:text-6xl font-bold mb-4">Empowering the next<br>generation of leaders.</h1>
+          <p class="text-2xl md:text-3xl text-blue-200 mb-4">One student at a time</p>
         </div>
       </div>
 
@@ -217,8 +268,18 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-3xl font-bold mb-6" style="color: var(--primary-blue);">Our Purpose</h2>
-            <p class="text-slate-600 leading-relaxed mb-4">Being student-led and youth-focused sets us apart as an engineering organization. Young Tech Engineers is a 501c3 partner as of this year as part of our mission to reach the next generation of engineers. But Youth Engineers Initiative aims to go further — to reach students in every community and give them the tools they need to succeed.</p>
-            <p class="text-slate-600 leading-relaxed">Youth Engineers fills the gap in STEM education through workshops, mentorship, and community. We believe that real-world engineering experience builds confidence and capability that lasts a lifetime and prepares young generations for their purpose.</p>
+            <p class="text-slate-600 leading-relaxed mb-4">Many students lack early access to hands-on engineering
+experiences, leaving them unaware of their potential in STEM.
+This gap limits creative exploration and problem-solving at a
+critical age.
+
+
+</p>
+            <p class="text-slate-600 leading-relaxed">Youth Engineers Initiative exists to build creative confidence
+and fill the gap in early STEM education through engaging,
+hands-on workshops that inspire curiosity and empower the
+next generation of innovators.
+</p>
           </div>
           <div class="flex justify-center">
             <div class="w-48 h-48 rounded-full bg-blue-50 flex items-center justify-center">
@@ -284,8 +345,8 @@
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl font-bold mb-10" style="color: var(--primary-blue);">Our Partners</h2>
           <div class="flex justify-center items-center gap-12 flex-wrap">
-            <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs text-center p-2">[ Partner Logo ]</div>
-            <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs text-center p-2">[ Partner Logo ]</div>
+            <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs text-center p-2"></div>
+            <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs text-center p-2"></div>
           </div>
         </div>
       </div>
@@ -295,28 +356,14 @@
         <div class="max-w-6xl mx-auto">
           <h2 class="text-3xl font-bold text-center mb-10" style="color: var(--primary-blue);">Real Stories, <span class="text-indigo-500">Real Change</span></h2>
           <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
-              <p class="text-slate-600 text-sm leading-relaxed mb-4">"[ Student testimonial placeholder — share your experience with Youth Engineers Initiative here. ]"</p>
-              <p class="text-sm font-semibold" style="color: var(--primary-blue);">— Student Name</p>
-            </div>
-            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
-              <p class="text-slate-600 text-sm leading-relaxed mb-4">"[ Student testimonial placeholder — share your experience with Youth Engineers Initiative here. ]"</p>
-              <p class="text-sm font-semibold" style="color: var(--primary-blue);">— Student Name</p>
-            </div>
-            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
-              <p class="text-slate-600 text-sm leading-relaxed mb-4">"[ Student testimonial placeholder — share your experience with Youth Engineers Initiative here. ]"</p>
-              <p class="text-sm font-semibold" style="color: var(--primary-blue);">— Student Name</p>
-            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100"></div>
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100"></div>
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100"></div>
           </div>
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="bg-white py-16 px-6 text-center">
-        <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-blue);">Lets Create Change Together</h2>
-        <p class="text-slate-500 max-w-xl mx-auto mb-8">Partner with us to cultivate critical thinking, creativity, and a commitment to innovation.</p>
-        <button onclick="showPage('contact')" class="px-8 py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Contact Us</button>
-      </div>
+      <!-- About CTA removed -->
 
       <!-- Footer -->
       <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
@@ -339,12 +386,16 @@
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
         <div class="text-center text-blue-400 text-xs mt-2">© 2025 Youth Engineers Initiative. All rights reserved.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== TEAM ==================== -->
     <section id="page-team" class="page-section">
+      <div class="section-inner">
       <!-- Hero -->
-      <div class="relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+      <div class="parallax-frame relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
         <div class="max-w-3xl mx-auto">
           <h1 class="text-4xl md:text-5xl font-bold mb-4">The people who bring our<br>mission to life</h1>
         </div>
@@ -460,14 +511,16 @@
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== CONTACT ==================== -->
     <section id="page-contact" class="page-section">
+      <div class="section-inner">
       <div class="min-h-screen bg-slate-50">
         <div class="max-w-6xl mx-auto px-6 py-16">
-          <div class="grid md:grid-cols-2 gap-12 items-start">
-            <div>
+          <div class="grid md:grid-cols-1 gap-12 items-start">
+            <div class="text-center max-w-3xl mx-auto">
               <h1 class="text-4xl font-bold mb-4" style="color: var(--primary-blue);">We'd Love to Hear From You!</h1>
               <p class="text-slate-500 mb-8">Whether you're a student, educator, or organization — we'd love to connect with you and explore how we can work together.</p>
               <div class="space-y-4">
@@ -496,22 +549,9 @@
                 <button class="w-full py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Submit</button>
               </div>
             </div>
-            <div class="flex flex-col gap-6">
-              <div class="w-full h-52 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400">
-                <i data-lucide="mail" style="width:48px;height:48px;"></i>
-              </div>
-              <div class="w-full h-52 bg-slate-100 rounded-xl flex items-center justify-center text-slate-400">
-                <i data-lucide="clipboard-check" style="width:48px;height:48px;"></i>
-              </div>
-            </div>
           </div>
 
-          <!-- Lets Create Change -->
-          <div class="mt-16 text-center py-12 bg-white rounded-2xl shadow-sm border border-slate-100">
-            <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-blue);">Lets Create Change Together</h2>
-            <p class="text-slate-500 mb-6 max-w-xl mx-auto">Partner with us to cultivate critical thinking, creativity, and a commitment to innovation.</p>
-            <div class="inline-block px-6 py-3 bg-slate-100 rounded-xl text-slate-500 text-sm font-medium">Thank You!</div>
-          </div>
+          <!-- Contact CTA removed -->
         </div>
       </div>
 
@@ -533,10 +573,12 @@
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
-    <!-- ==================== PROGRAMS / RESOURCES ==================== -->
-    <section id="page-programs" class="page-section">
+    <!-- ==================== RESOURCES ==================== -->
+    <section id="page-resources" class="page-section">
+      <div class="section-inner">
       <div class="max-w-6xl mx-auto px-6 py-16">
         <h1 class="text-4xl font-bold text-center mb-3" style="color: var(--primary-blue);">Resources</h1>
         <p class="text-center text-slate-500 mb-12">As a Youth Engineers Initiative member, take resources from your community with this official project slideshow, linked here.</p>
@@ -547,10 +589,10 @@
             <div class="flex-1">
               <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Wind Turbine</h3>
               <p class="text-slate-500 text-sm leading-relaxed mb-4">Wind turbines are a powerful source of renewable energy. Learn how to create and test your own model of one! For Educators, this is a great resource for renewable energy. Learn the fundamentals of our earthquake-resistant engineering here.</p>
-              <a href="#" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
+              <a href="https://drive.google.com/file/d/1RHVmJ7BXTDhzawZHD_Ij9Nkia5tRBmiL/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
             </div>
-            <div class="w-full md:w-56 h-36 bg-slate-200 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden">
-              <i data-lucide="wind" style="width:40px;height:40px;color:#94a3b8;"></i>
+            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
+              <img src="/assets/workshopcovers/windturbinecover.png" alt="Wind Turbine cover" class="w-full h-full object-cover">
             </div>
           </div>
 
@@ -559,10 +601,10 @@
             <div class="flex-1">
               <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Truss Bridges</h3>
               <p class="text-slate-500 text-sm leading-relaxed mb-4">The bridges we drive over every day are carefully designed with engineering, so maybe re-create designs from bridge today!</p>
-              <a href="#" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
+              <a href="https://drive.google.com/file/d/1Ni3yPTZHUPl0tbLnQ6S7xl7nb4c6pi5Q/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
             </div>
-            <div class="w-full md:w-56 h-36 bg-slate-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i data-lucide="bridge" style="width:40px;height:40px;color:#94a3b8;"></i>
+            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
+              <img src="/assets/workshopcovers/trussbridgescover.png" alt="Truss Bridges cover" class="w-full h-full object-cover">
             </div>
           </div>
 
@@ -571,10 +613,10 @@
             <div class="flex-1">
               <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Earthquake Tower</h3>
               <p class="text-slate-500 text-sm leading-relaxed mb-4">Wind turbines are a powerful source of renewable energy. Learn how to create and test your own model of one! For Educators, this is a significant resource for renewable energy. Learn the fundamentals of our earthquake-resistant engineering here.</p>
-              <a href="#" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
+              <a href="https://drive.google.com/file/d/1j9cOtw53DKLWACMmdv5YAUcSgg6h5H75/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
             </div>
-            <div class="w-full md:w-56 h-36 bg-slate-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i data-lucide="building-2" style="width:40px;height:40px;color:#94a3b8;"></i>
+            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
+              <img src="/assets/workshopcovers/towerscover.png" alt="Earthquake Tower cover" class="w-full h-full object-cover">
             </div>
           </div>
 
@@ -583,10 +625,10 @@
             <div class="flex-1">
               <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Balloon Drop</h3>
               <p class="text-slate-500 text-sm leading-relaxed mb-4">A science physics class project. The balloon drop explores Newtonian mechanics that physicists find fascinating. Build on today.</p>
-              <a href="#" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
+              <a href="https://drive.google.com/file/d/1bg-4iqBQh4AHnFoRZejkSh2OPOXO-ok7/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
             </div>
-            <div class="w-full md:w-56 h-36 bg-slate-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i data-lucide="circle-dot" style="width:40px;height:40px;color:#94a3b8;"></i>
+            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
+              <img src="/assets/workshopcovers/balloondropcover.png" alt="Balloon Drop cover" class="w-full h-full object-cover">
             </div>
           </div>
 
@@ -595,10 +637,10 @@
             <div class="flex-1">
               <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Financial Literacy Economics</h3>
               <p class="text-slate-500 text-sm leading-relaxed mb-4">Being financially literate is vital for anybody in our modern day society. For engineers in particular, the journey with this course!</p>
-              <a href="#" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
+              <a href="https://drive.google.com/file/d/1fMgSd0QgdwQJ-0Ur64Uo4GK31emZwJal/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
             </div>
-            <div class="w-full md:w-56 h-36 bg-slate-200 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i data-lucide="piggy-bank" style="width:40px;height:40px;color:#94a3b8;"></i>
+            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
+              <img src="/assets/workshopcovers/financialcover.png" alt="Financial Literacy cover" class="w-full h-full object-cover">
             </div>
           </div>
         </div>
@@ -622,10 +664,12 @@
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== CHAPTERS ==================== -->
     <section id="page-chapters" class="page-section">
+      <div class="section-inner">
       <div class="max-w-6xl mx-auto px-6 py-16">
         <h1 class="text-4xl font-bold mb-3" style="color: var(--primary-blue);">School Chapters</h1>
         <p class="text-slate-500 mb-12 max-w-3xl">Youth Engineers Initiative School Chapters are independent, volunteer-led organizations that act as local branches of the Youth Engineers Initiative. As part of our mission to inspire the next generation of engineers, the Youth Engineers Initiative will help to expand efforts to a wider home audience.</p>
@@ -722,11 +766,15 @@
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== IMPACT ==================== -->
     <section id="page-impact" class="page-section">
-      <div class="py-20 px-6 text-white text-center" style="background-color: var(--primary-blue);">
+      <div class="section-inner">
+      <div class="parallax-frame py-20 px-6 text-white text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Impact</h1>
         <p class="text-blue-200 max-w-xl mx-auto">Measuring the change we make one student at a time.</p>
       </div>
@@ -781,11 +829,15 @@
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== NEWS ==================== -->
     <section id="page-news" class="page-section">
-      <div class="py-20 px-6 text-white text-center" style="background-color: var(--primary-blue);">
+      <div class="section-inner">
+      <div class="parallax-frame py-20 px-6 text-white text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">News</h1>
         <p class="text-blue-200">Latest updates from Youth Engineers Initiative.</p>
       </div>
@@ -825,13 +877,17 @@
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== MEDIA GALLERY ==================== -->
     <section id="page-media" class="page-section">
-      <div class="py-20 px-6 text-white text-center" style="background-color: var(--primary-blue);">
+      <div class="section-inner">
+      <div class="parallax-frame py-20 px-6 text-white text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Media Gallery</h1>
-        <p class="text-blue-200">Photos and videos from our programs and chapters.</p>
+        <p class="text-blue-200">Photos and videos from our resources and chapters.</p>
       </div>
       <div class="max-w-6xl mx-auto px-6 py-16">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -851,6 +907,7 @@
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
   </main>
@@ -863,18 +920,58 @@
 
     lucide.createIcons();
 
+    const parallaxLayers = Array.from(document.querySelectorAll('[data-parallax-speed]'));
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let parallaxFrame = null;
+    const scrollContainer = document.querySelector('main');
+
+    function updateParallax() {
+      if (prefersReducedMotion || parallaxLayers.length === 0) return;
+
+      const scrollY = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
+      const viewportHeight = scrollContainer ? scrollContainer.clientHeight : window.innerHeight;
+
+      parallaxLayers.forEach((layer) => {
+        const speed = Number(layer.dataset.parallaxSpeed || 0);
+        const bounds = layer.parentElement.getBoundingClientRect();
+        const parentTop = bounds.top + scrollY;
+        const sectionCenter = parentTop + bounds.height / 2;
+        const viewportCenter = scrollY + viewportHeight / 2;
+        const distance = viewportCenter - sectionCenter;
+        const offset = Math.max(-60, Math.min(60, distance * speed * 0.08));
+
+        layer.style.transform = `translate3d(0, ${offset}px, 0)`;
+      });
+
+      parallaxFrame = null;
+    }
+
+    function requestParallaxUpdate() {
+      if (parallaxFrame !== null || prefersReducedMotion) return;
+      parallaxFrame = window.requestAnimationFrame(updateParallax);
+    }
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+    }
+    window.addEventListener('resize', requestParallaxUpdate);
+    requestParallaxUpdate();
+
     function showPage(pageId) {
-      // Hide all sections
-      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-      // Show target
       const target = document.getElementById('page-' + pageId);
       if (target) {
-        target.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (scrollContainer) {
+          scrollContainer.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+        } else {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
+
+      requestParallaxUpdate();
+
       // Close mobile menu
       document.getElementById('mobile-menu').classList.add('hidden');
-      // Re-run lucide for newly shown icons
+      // Re-run lucide for icons
       lucide.createIcons();
     }
   </script>
