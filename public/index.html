@@ -12,11 +12,37 @@
     .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(-4px); transition: all 0.2s ease; }
     .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
     :root { --primary-blue: #1d3952; }
-    .page-section { display: none; }
-    .page-section.active { display: block; }
+    main {
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      scroll-padding-top: 0;
+    }
+    main {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    main::-webkit-scrollbar { width: 0; height: 0; }
+    .page-section {
+      display: block;
+      height: calc(100vh - 64px);
+      overflow: hidden;
+      box-sizing: border-box;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    /* Inner wrapper allows internal smooth scrolling within a section */
+    .section-inner {
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
     .nav-link.active-page { color: #4338ca; background-color: #eef2ff; border-radius: 6px; }
-    html { scroll-behavior: smooth; }
-    body { overflow-x: hidden; }
+    /* Lock window scrolling: make main the only scroll container */
+    html, body { height: 100%; scroll-behavior: smooth; overflow: hidden; }
     .parallax-frame { position: relative; overflow: hidden; isolation: isolate; }
     .parallax-layer {
       position: absolute;
@@ -165,6 +191,7 @@
 
     <!-- ==================== HOME ==================== -->
     <section id="page-home" class="page-section active">
+      <div class="section-inner">
       <!-- Hero -->
       <div class="parallax-frame relative text-white py-28 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
         <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.18"></div>
@@ -238,10 +265,12 @@
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
         <div class="text-center text-blue-400 text-xs mt-2">© 2025 Youth Engineers Initiative. All rights reserved.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== ABOUT ==================== -->
     <section id="page-about" class="page-section">
+      <div class="section-inner">
       <!-- Hero -->
       <div class="parallax-frame relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
         <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.14"></div>
@@ -390,10 +419,12 @@ next generation of innovators.
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
         <div class="text-center text-blue-400 text-xs mt-2">© 2025 Youth Engineers Initiative. All rights reserved.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== TEAM ==================== -->
     <section id="page-team" class="page-section">
+      <div class="section-inner">
       <!-- Hero -->
       <div class="parallax-frame relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
         <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
@@ -513,10 +544,12 @@ next generation of innovators.
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== CONTACT ==================== -->
     <section id="page-contact" class="page-section">
+      <div class="section-inner">
       <div class="min-h-screen bg-slate-50">
         <div class="max-w-6xl mx-auto px-6 py-16">
           <div class="grid md:grid-cols-2 gap-12 items-start">
@@ -586,10 +619,12 @@ next generation of innovators.
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== PROGRAMS / RESOURCES ==================== -->
     <section id="page-programs" class="page-section">
+      <div class="section-inner">
       <div class="max-w-6xl mx-auto px-6 py-16">
         <h1 class="text-4xl font-bold text-center mb-3" style="color: var(--primary-blue);">Resources</h1>
         <p class="text-center text-slate-500 mb-12">As a Youth Engineers Initiative member, take resources from your community with this official project slideshow, linked here.</p>
@@ -614,8 +649,8 @@ next generation of innovators.
               <p class="text-slate-500 text-sm leading-relaxed mb-4">The bridges we drive over every day are carefully designed with engineering, so maybe re-create designs from bridge today!</p>
               <a href="https://drive.google.com/file/d/1Ni3yPTZHUPl0tbLnQ6S7xl7nb4c6pi5Q/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
             </div>
-            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center" style="width: 18rem; height: 11.5rem;">
-              <i data-lucide="bridge" style="width:40px;height:40px;color:#94a3b8;"></i>
+            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
+              <img src="/assets/workshopcovers/trussbridgescover.png" alt="Truss Bridges cover" class="w-full h-full object-cover">
             </div>
           </div>
 
@@ -626,8 +661,8 @@ next generation of innovators.
               <p class="text-slate-500 text-sm leading-relaxed mb-4">Wind turbines are a powerful source of renewable energy. Learn how to create and test your own model of one! For Educators, this is a significant resource for renewable energy. Learn the fundamentals of our earthquake-resistant engineering here.</p>
               <a href="https://drive.google.com/file/d/1j9cOtw53DKLWACMmdv5YAUcSgg6h5H75/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
             </div>
-            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center" style="width: 18rem; height: 11.5rem;">
-              <i data-lucide="building-2" style="width:40px;height:40px;color:#94a3b8;"></i>
+            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
+              <img src="/assets/workshopcovers/towerscover.png" alt="Earthquake Tower cover" class="w-full h-full object-cover">
             </div>
           </div>
 
@@ -638,8 +673,8 @@ next generation of innovators.
               <p class="text-slate-500 text-sm leading-relaxed mb-4">A science physics class project. The balloon drop explores Newtonian mechanics that physicists find fascinating. Build on today.</p>
               <a href="https://drive.google.com/file/d/1bg-4iqBQh4AHnFoRZejkSh2OPOXO-ok7/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
             </div>
-            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center" style="width: 18rem; height: 11.5rem;">
-              <i data-lucide="circle-dot" style="width:40px;height:40px;color:#94a3b8;"></i>
+            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
+              <img src="/assets/workshopcovers/balloondropcover.png" alt="Balloon Drop cover" class="w-full h-full object-cover">
             </div>
           </div>
 
@@ -650,8 +685,8 @@ next generation of innovators.
               <p class="text-slate-500 text-sm leading-relaxed mb-4">Being financially literate is vital for anybody in our modern day society. For engineers in particular, the journey with this course!</p>
               <a href="https://drive.google.com/file/d/1fMgSd0QgdwQJ-0Ur64Uo4GK31emZwJal/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
             </div>
-            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center" style="width: 18rem; height: 11.5rem;">
-              <i data-lucide="piggy-bank" style="width:40px;height:40px;color:#94a3b8;"></i>
+            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
+              <img src="/assets/workshopcovers/financialcover.png" alt="Financial Literacy cover" class="w-full h-full object-cover">
             </div>
           </div>
         </div>
@@ -675,10 +710,12 @@ next generation of innovators.
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== CHAPTERS ==================== -->
     <section id="page-chapters" class="page-section">
+      <div class="section-inner">
       <div class="max-w-6xl mx-auto px-6 py-16">
         <h1 class="text-4xl font-bold mb-3" style="color: var(--primary-blue);">School Chapters</h1>
         <p class="text-slate-500 mb-12 max-w-3xl">Youth Engineers Initiative School Chapters are independent, volunteer-led organizations that act as local branches of the Youth Engineers Initiative. As part of our mission to inspire the next generation of engineers, the Youth Engineers Initiative will help to expand efforts to a wider home audience.</p>
@@ -775,10 +812,12 @@ next generation of innovators.
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== IMPACT ==================== -->
     <section id="page-impact" class="page-section">
+      <div class="section-inner">
       <div class="parallax-frame py-20 px-6 text-white text-center overflow-hidden" style="background-color: var(--primary-blue);">
         <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
         <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
@@ -836,10 +875,12 @@ next generation of innovators.
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== NEWS ==================== -->
     <section id="page-news" class="page-section">
+      <div class="section-inner">
       <div class="parallax-frame py-20 px-6 text-white text-center overflow-hidden" style="background-color: var(--primary-blue);">
         <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
         <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
@@ -882,10 +923,12 @@ next generation of innovators.
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
     <!-- ==================== MEDIA GALLERY ==================== -->
     <section id="page-media" class="page-section">
+      <div class="section-inner">
       <div class="parallax-frame py-20 px-6 text-white text-center overflow-hidden" style="background-color: var(--primary-blue);">
         <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.12"></div>
         <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.08"></div>
@@ -910,6 +953,7 @@ next generation of innovators.
         </div>
         <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
+      </div>
     </section>
 
   </main>
@@ -925,55 +969,56 @@ next generation of innovators.
     const parallaxLayers = Array.from(document.querySelectorAll('[data-parallax-speed]'));
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let parallaxFrame = null;
+    const scrollContainer = document.querySelector('main');
 
     function updateParallax() {
-      parallaxFrame = null;
+      if (prefersReducedMotion || parallaxLayers.length === 0) return;
 
-      if (prefersReducedMotion || parallaxLayers.length === 0) {
-        return;
-      }
-
-      const scrollY = window.scrollY;
-      const viewportHeight = window.innerHeight;
+      const scrollY = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
+      const viewportHeight = scrollContainer ? scrollContainer.clientHeight : window.innerHeight;
 
       parallaxLayers.forEach((layer) => {
         const speed = Number(layer.dataset.parallaxSpeed || 0);
         const bounds = layer.parentElement.getBoundingClientRect();
-        const sectionCenter = bounds.top + window.scrollY + bounds.height / 2;
+        const parentTop = bounds.top + scrollY;
+        const sectionCenter = parentTop + bounds.height / 2;
         const viewportCenter = scrollY + viewportHeight / 2;
         const distance = viewportCenter - sectionCenter;
         const offset = Math.max(-60, Math.min(60, distance * speed * 0.08));
 
         layer.style.transform = `translate3d(0, ${offset}px, 0)`;
       });
+
+      parallaxFrame = null;
     }
 
     function requestParallaxUpdate() {
-      if (parallaxFrame !== null || prefersReducedMotion) {
-        return;
-      }
-
+      if (parallaxFrame !== null || prefersReducedMotion) return;
       parallaxFrame = window.requestAnimationFrame(updateParallax);
     }
 
-    window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+    }
     window.addEventListener('resize', requestParallaxUpdate);
     requestParallaxUpdate();
 
     function showPage(pageId) {
-      // Hide all sections
-      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-      // Show target
       const target = document.getElementById('page-' + pageId);
       if (target) {
-        target.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (scrollContainer) {
+          scrollContainer.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+        } else {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
+
+      requestParallaxUpdate();
+
       // Close mobile menu
       document.getElementById('mobile-menu').classList.add('hidden');
-      // Re-run lucide for newly shown icons
+      // Re-run lucide for icons
       lucide.createIcons();
-      requestParallaxUpdate();
     }
   </script>
 </body>
