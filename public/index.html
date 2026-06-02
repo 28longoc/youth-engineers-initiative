@@ -79,6 +79,17 @@
       bottom: -4rem;
       background: radial-gradient(circle, rgba(191, 219, 254, 0.24), rgba(191, 219, 254, 0));
     }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      pointer-events: none;
+      transform: scale(1.08) translate3d(0, 12px, 0);
+      filter: saturate(0.95) contrast(1.05);
+    }
   </style>
 </head>
 <body class="h-full bg-slate-50">
@@ -88,9 +99,9 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
-        <div class="w-40 flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
-          <i data-lucide="lightbulb" style="width:28px;height:28px;color:var(--primary-blue);"></i>
-          <span class="text-sm font-bold tracking-wide uppercase" style="color:var(--primary-blue);">Youth Engineers Initiative</span>
+        <div class="h-16 overflow-hidden flex-shrink-0 flex items-center gap-3 cursor-pointer w-auto" onclick="showPage('home')">
+          <img src="/assets/logos/yeilogofooter.png" alt="Youth Engineers Initiative" class="h-12 w-auto max-w-none object-contain">
+          <span class="text-base sm:text-lg font-semibold tracking-wide text-slate-800 whitespace-nowrap">Youth Engineers <span class="text-blue-300">Initiative</span></span>
         </div>
 
         <!-- Desktop Nav -->
@@ -180,9 +191,13 @@
     <section id="page-home" class="page-section active">
       <div class="section-inner">
       <!-- Hero -->
-      <div class="parallax-frame relative text-white py-28 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+      <div class="parallax-frame relative text-white py-28 px-6 text-center overflow-hidden min-h-[32rem] flex items-center" style="background-color: var(--primary-blue);">
+        <video class="hero-video" data-parallax-speed="0.12" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="/assets/videos/homepagevideo.mp4" type="video/mp4">
+        </video>
         <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.18"></div>
         <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.12"></div>
+        <div class="absolute inset-0 bg-slate-950/50"></div>
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, #ffffff 1px, transparent 1px), radial-gradient(circle at 80% 50%, #ffffff 1px, transparent 1px); background-size: 60px 60px;"></div>
         <div class="relative max-w-3xl mx-auto">
           <p class="text-sm uppercase tracking-widest text-blue-200 mb-4 font-medium">Youth Engineers Initiative</p>
@@ -191,18 +206,6 @@
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <button onclick="showPage('about')" class="px-8 py-3 bg-white font-semibold rounded-lg transition hover:bg-blue-50" style="color: var(--primary-blue);">Learn More</button>
             <button onclick="showPage('contact')" class="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg transition hover:bg-white/10">Get Involved</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Video placeholder -->
-      <div class="max-w-4xl mx-auto px-6 py-16">
-        <div class="rounded-2xl overflow-hidden bg-slate-200 flex items-center justify-center" style="height:360px;">
-          <div class="text-center">
-            <div class="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center mx-auto mb-3 cursor-pointer hover:bg-white transition">
-              <i data-lucide="play" style="width:28px;height:28px;color:var(--primary-blue);margin-left:3px;"></i>
-            </div>
-            <!-- video placeholder removed -->
           </div>
         </div>
       </div>
@@ -226,26 +229,14 @@
       <!-- CTA Banner removed -->
 
       <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div class="flex items-center gap-2">
-            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
-            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
-          </div>
-          <div class="flex gap-6 text-sm text-blue-200">
-            <button onclick="showPage('impact')" class="hover:text-white transition">Impact</button>
-            <button onclick="showPage('about')" class="hover:text-white transition">About</button>
-            <button onclick="showPage('contact')" class="hover:text-white transition">Contact</button>
-          </div>
-          <div class="flex gap-3">
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="twitter" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="facebook" style="width:14px;height:14px;"></i></a>
+      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
+        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
+          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
+          <div class="flex items-center gap-4">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
           </div>
         </div>
-        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
-        <div class="text-center text-blue-400 text-xs mt-2">© 2025 Youth Engineers Initiative. All rights reserved.</div>
       </footer>
       </div>
     </section>
@@ -255,9 +246,15 @@
       <div class="section-inner">
       <!-- Hero -->
       <div class="parallax-frame relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
-        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.14"></div>
-        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.1"></div>
-        <div class="max-w-3xl mx-auto">
+        <video class="hero-video" data-parallax-speed="0.14" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="/assets/videos/aboutpagevideo.mp4" type="video/mp4">
+          <source src="/assets/videos/aboutpagevideo.mov" type="video/quicktime">
+        </video>
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.14" style="z-index:1;"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.1" style="z-index:1;"></div>
+        <div class="absolute inset-0 bg-slate-950/50"></div>
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, #ffffff 1px, transparent 1px), radial-gradient(circle at 80% 50%, #ffffff 1px, transparent 1px); background-size: 60px 60px;"></div>
+        <div class="max-w-3xl mx-auto" style="position:relative; z-index:2;">
           <h1 class="text-5xl md:text-6xl font-bold mb-4">Empowering the next<br>generation of leaders.</h1>
           <p class="text-2xl md:text-3xl text-blue-200 mb-4">One student at a time</p>
         </div>
@@ -366,25 +363,14 @@ next generation of innovators.
       <!-- About CTA removed -->
 
       <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div class="flex items-center gap-2">
-            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
-            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
-          </div>
-          <div class="flex gap-6 text-sm text-blue-200">
-            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
-            <button onclick="showPage('about')" class="hover:text-white">About</button>
-          </div>
-          <div class="flex gap-3">
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="twitter" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="facebook" style="width:14px;height:14px;"></i></a>
+      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
+        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
+          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
+          <div class="flex items-center gap-4">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
           </div>
         </div>
-        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
-        <div class="text-center text-blue-400 text-xs mt-2">© 2025 Youth Engineers Initiative. All rights reserved.</div>
       </footer>
       </div>
     </section>
@@ -494,22 +480,14 @@ next generation of innovators.
       </div>
 
       <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div class="flex items-center gap-2">
-            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
-            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
-          </div>
-          <div class="flex gap-6 text-sm text-blue-200">
-            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
-            <button onclick="showPage('about')" class="hover:text-white">About</button>
-          </div>
-          <div class="flex gap-3">
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
+        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
+          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
+          <div class="flex items-center gap-4">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
           </div>
         </div>
-        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
       </div>
     </section>
@@ -524,29 +502,30 @@ next generation of innovators.
               <h1 class="text-4xl font-bold mb-4" style="color: var(--primary-blue);">We'd Love to Hear From You!</h1>
               <p class="text-slate-500 mb-8">Whether you're a student, educator, or organization — we'd love to connect with you and explore how we can work together.</p>
               <div class="space-y-4">
-                <div>
-                  <label class="block text-sm font-medium text-slate-700 mb-1">Name</label>
-                  <input type="text" placeholder="First name" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                  <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1">First name</label>
-                    <input type="text" placeholder="First" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="flex flex-col gap-1">
+                    <label class="text-sm font-medium text-slate-700 text-left">First name</label>
+                    <input type="text" placeholder="First" class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
                   </div>
-                  <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1">Last name</label>
-                    <input type="text" placeholder="Last" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                  <div class="flex flex-col gap-1">
+                    <label class="text-sm font-medium text-slate-700 text-left">Last name</label>
+                    <input type="text" placeholder="Last" class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
                   </div>
                 </div>
-                <div>
-                  <label class="block text-sm font-medium text-slate-700 mb-1">Email address</label>
-                  <input type="email" placeholder="email@example.com" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+
+                <div class="flex flex-col gap-1">
+                  <label class="text-sm font-medium text-slate-700 text-left">Email address</label>
+                  <input type="email" placeholder="email@example.com" class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
                 </div>
-                <div>
-                  <label class="block text-sm font-medium text-slate-700 mb-1">Message</label>
-                  <textarea rows="5" placeholder="Your message..." class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none"></textarea>
+
+                <div class="flex flex-col gap-1">
+                  <label class="text-sm font-medium text-slate-700 text-left">Message</label>
+                  <textarea rows="5" placeholder="Your message..." class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none"></textarea>
                 </div>
-                <button class="w-full py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Submit</button>
+
+                <div class="pt-2">
+                  <button class="w-full md:w-auto py-3 px-6 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Submit</button>
+                </div>
               </div>
             </div>
           </div>
@@ -556,22 +535,14 @@ next generation of innovators.
       </div>
 
       <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div class="flex items-center gap-2">
-            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
-            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
-          </div>
-          <div class="flex gap-6 text-sm text-blue-200">
-            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
-            <button onclick="showPage('about')" class="hover:text-white">About</button>
-          </div>
-          <div class="flex gap-3">
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
+        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
+          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
+          <div class="flex items-center gap-4">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
           </div>
         </div>
-        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
       </div>
     </section>
@@ -647,22 +618,14 @@ next generation of innovators.
       </div>
 
       <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div class="flex items-center gap-2">
-            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
-            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
-          </div>
-          <div class="flex gap-6 text-sm text-blue-200">
-            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
-            <button onclick="showPage('about')" class="hover:text-white">About</button>
-          </div>
-          <div class="flex gap-3">
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
+        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
+          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
+          <div class="flex items-center gap-4">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
           </div>
         </div>
-        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
       </div>
     </section>
@@ -749,22 +712,14 @@ next generation of innovators.
       </div>
 
       <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div class="flex items-center gap-2">
-            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
-            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
-          </div>
-          <div class="flex gap-6 text-sm text-blue-200">
-            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
-            <button onclick="showPage('about')" class="hover:text-white">About</button>
-          </div>
-          <div class="flex gap-3">
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
+        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
+          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
+          <div class="flex items-center gap-4">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
           </div>
         </div>
-        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
       </div>
     </section>
@@ -812,22 +767,14 @@ next generation of innovators.
       </div>
 
       <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div class="flex items-center gap-2">
-            <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
-            <span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span>
-          </div>
-          <div class="flex gap-6 text-sm text-blue-200">
-            <button onclick="showPage('impact')" class="hover:text-white">Impact</button>
-            <button onclick="showPage('about')" class="hover:text-white">About</button>
-          </div>
-          <div class="flex gap-3">
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="instagram" style="width:14px;height:14px;"></i></a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition"><i data-lucide="linkedin" style="width:14px;height:14px;"></i></a>
+      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
+        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
+          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
+          <div class="flex items-center gap-4">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
           </div>
         </div>
-        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
       </div>
     </section>
@@ -870,12 +817,14 @@ next generation of innovators.
         </div>
       </div>
       <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div class="flex items-center gap-2"><i data-lucide="lightbulb" style="width:22px;height:22px;"></i><span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span></div>
-          <div class="flex gap-6 text-sm text-blue-200"><button onclick="showPage('impact')" class="hover:text-white">Impact</button><button onclick="showPage('about')" class="hover:text-white">About</button></div>
+      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
+        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
+          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
+          <div class="flex items-center gap-4">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
+          </div>
         </div>
-        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
       </div>
     </section>
@@ -900,12 +849,14 @@ next generation of innovators.
         </div>
       </div>
       <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: var(--primary-blue);">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div class="flex items-center gap-2"><i data-lucide="lightbulb" style="width:22px;height:22px;"></i><span class="font-bold uppercase tracking-wide text-sm">Youth Engineers Initiative</span></div>
-          <div class="flex gap-6 text-sm text-blue-200"><button onclick="showPage('impact')" class="hover:text-white">Impact</button><button onclick="showPage('about')" class="hover:text-white">About</button></div>
+      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
+        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
+          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
+          <div class="flex items-center gap-4">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
+          </div>
         </div>
-        <div class="text-center text-blue-300 text-xs mt-8">Together, we're empowering younger generations to become leaders through engineering and innovation.</div>
       </footer>
       </div>
     </section>
@@ -938,7 +889,7 @@ next generation of innovators.
         const sectionCenter = parentTop + bounds.height / 2;
         const viewportCenter = scrollY + viewportHeight / 2;
         const distance = viewportCenter - sectionCenter;
-        const offset = Math.max(-60, Math.min(60, distance * speed * 0.08));
+        const offset = Math.max(-60, Math.min(60, distance * speed * 0.12));
 
         layer.style.transform = `translate3d(0, ${offset}px, 0)`;
       });
