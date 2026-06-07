@@ -1116,32 +1116,28 @@ next generation of innovators.
             <div class="text-center max-w-3xl mx-auto">
               <h1 class="text-4xl font-bold mb-4" style="color: var(--primary-blue);">We'd Love to Hear From You!</h1>
               <p class="text-slate-500 mb-8">Whether you're a student, educator, or organization — we'd love to connect with you and explore how we can work together.</p>
-              <div class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div class="flex flex-col gap-1">
-                    <label class="text-sm font-medium text-slate-700 text-left">First name</label>
-                    <input type="text" placeholder="First" class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <label class="text-sm font-medium text-slate-700 text-left">Last name</label>
-                    <input type="text" placeholder="Last" class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
-                  </div>
+              <form id="contact-form" class="space-y-4 text-left">
+                <div class="flex flex-col gap-1">
+                  <label for="contact-email" class="text-sm font-medium text-slate-700 text-left">Email address</label>
+                  <input id="contact-email" name="email" type="email" placeholder="email@example.com" required class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-200">
                 </div>
 
                 <div class="flex flex-col gap-1">
-                  <label class="text-sm font-medium text-slate-700 text-left">Email address</label>
-                  <input type="email" placeholder="email@example.com" class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                  <label for="contact-subject" class="text-sm font-medium text-slate-700 text-left">Subject</label>
+                  <input id="contact-subject" name="subject" type="text" placeholder="Subject" required class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-200">
                 </div>
 
                 <div class="flex flex-col gap-1">
-                  <label class="text-sm font-medium text-slate-700 text-left">Message</label>
-                  <textarea rows="5" placeholder="Your message..." class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none"></textarea>
+                  <label for="contact-message" class="text-sm font-medium text-slate-700 text-left">Message</label>
+                  <textarea id="contact-message" name="message" rows="5" placeholder="Your message..." required class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none"></textarea>
                 </div>
+
+                <p id="contact-status" class="text-sm text-slate-500"></p>
 
                 <div class="pt-2">
-                  <button class="w-full md:w-auto py-3 px-6 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Submit</button>
+                  <button type="submit" class="w-full md:w-auto py-3 px-6 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Submit</button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
 
@@ -1186,6 +1182,8 @@ next generation of innovators.
     const carouselNext = document.querySelector('[data-photo-carousel-next]');
     let carouselIndex = 0;
     let carouselTimer = null;
+    const contactForm = document.getElementById('contact-form');
+    const contactStatus = document.getElementById('contact-status');
 
     function updateCarousel() {
       if (!carouselTrack || carouselSlides.length === 0) return;
@@ -1244,6 +1242,53 @@ next generation of innovators.
 
     updateCarousel();
     startCarousel();
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById('contact-email').value.trim();
+        const subject = document.getElementById('contact-subject').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
+
+        if (!email || !subject || !message) {
+          if (contactStatus) {
+            contactStatus.textContent = 'Please fill out your email, subject, and message.';
+          }
+          return;
+        }
+
+        if (contactStatus) {
+          contactStatus.textContent = 'Sending your message...';
+        }
+
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, subject, message }),
+        })
+          .then(async (response) => {
+            const payload = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+              throw new Error(payload.error || 'Unable to send message right now.');
+            }
+
+            if (contactStatus) {
+              contactStatus.textContent = 'Message sent successfully.';
+            }
+
+            contactForm.reset();
+          })
+          .catch((error) => {
+            if (contactStatus) {
+              contactStatus.textContent = error.message;
+            }
+          });
+      });
+    }
 
     function updateParallax() {
       if (prefersReducedMotion || parallaxLayers.length === 0) return;
