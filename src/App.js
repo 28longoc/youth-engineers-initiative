@@ -20,7 +20,7 @@ const slideContent = [
   },
   {
     title: 'Photo 5',
-    src: '/assets/photowheelhomepage/IMG_8749.jpeg',
+    src: '/assets/photowheelhomepage/engineeringenergy.png',
   },
 ];
 
