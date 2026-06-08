@@ -90,6 +90,90 @@
       transform: scale(1.08) translate3d(0, 12px, 0);
       filter: saturate(0.95) contrast(1.05);
     }
+    .photo-carousel {
+      position: relative;
+      width: min(100%, 28rem);
+    }
+    .photo-carousel-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2rem;
+      background: linear-gradient(160deg, rgba(29, 57, 82, 0.12), rgba(29, 57, 82, 0.04));
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+      border: 1px solid rgba(29, 57, 82, 0.08);
+    }
+    .photo-carousel-track {
+      display: flex;
+      transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+    .photo-carousel-slide {
+      position: relative;
+      flex: 0 0 100%;
+      aspect-ratio: 1 / 1;
+    }
+    .photo-carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-carousel-caption {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(10px);
+      color: #1d3952;
+      font-weight: 700;
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+    .photo-carousel-button {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      width: 2.75rem;
+      height: 2.75rem;
+      border: 0;
+      border-radius: 9999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.92);
+      color: #1d3952;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .photo-carousel-button:hover,
+    .photo-carousel-button:focus-visible {
+      outline: 2px solid rgba(86, 137, 177, 0.85);
+      outline-offset: 2px;
+      background: #ffffff;
+    }
+    .photo-carousel-button.prev { left: 0.85rem; }
+    .photo-carousel-button.next { right: 0.85rem; }
+    .photo-carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding-top: 0.85rem;
+    }
+    .photo-carousel-dot {
+      width: 0.6rem;
+      height: 0.6rem;
+      border: 0;
+      border-radius: 9999px;
+      background: rgba(29, 57, 82, 0.22);
+      cursor: pointer;
+    }
+    .photo-carousel-dot.active {
+      width: 1.8rem;
+      background: linear-gradient(90deg, #1d3952, #5999c4);
+    }
   </style>
 </head>
 <body class="h-full bg-slate-50">
@@ -213,8 +297,33 @@
       <div class="max-w-6xl mx-auto px-6 py-16">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="flex justify-center">
-            <div class="w-56 h-56 rounded-full bg-blue-50 flex items-center justify-center">
-              <i data-lucide="atom" style="width:80px;height:80px;color:var(--primary-blue);"></i>
+            <div class="photo-carousel">
+              <div class="photo-carousel-frame">
+                <button type="button" class="photo-carousel-button prev" data-photo-carousel-prev aria-label="Previous photo">
+                  <span aria-hidden="true">←</span>
+                </button>
+                <div class="photo-carousel-track" data-photo-carousel-track>
+                  <div class="photo-carousel-slide">
+                    <img src="/assets/photowheelhomepage/IMG_6968.jpeg" alt="Youth Engineers Initiative photo 1">
+                  </div>
+                  <div class="photo-carousel-slide">
+                    <img src="/assets/photowheelhomepage/IMG_7191.jpeg" alt="Youth Engineers Initiative photo 2">
+                  </div>
+                  <div class="photo-carousel-slide">
+                    <img src="/assets/photowheelhomepage/IMG_8052.jpeg" alt="Youth Engineers Initiative photo 3">
+                  </div>
+                  <div class="photo-carousel-slide">
+                    <img src="/assets/photowheelhomepage/IMG_8634.jpg" alt="Youth Engineers Initiative photo 4">
+                  </div>
+                  <div class="photo-carousel-slide">
+                    <img src="/assets/photowheelhomepage/IMG_8749.jpeg" alt="Youth Engineers Initiative photo 5">
+                  </div>
+                </div>
+                <button type="button" class="photo-carousel-button next" data-photo-carousel-next aria-label="Next photo">
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+              <div class="photo-carousel-dots" data-photo-carousel-dots aria-label="Photo carousel navigation"></div>
             </div>
           </div>
           <div>
@@ -266,86 +375,49 @@
           <!-- Each card: swap out placeholder with real photo/info -->
           <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
             <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
-              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+              <img src="assets/memberphotos/cridih.png" alt="Chris Longo" class="w-full h-full object-cover">
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Chris Longo</p>
-            <p class="text-xs text-slate-400">Role Here</p>
+            <p class="text-xs text-slate-400">Founder, President</p>
           </div>
           <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
-            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
-              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
-            </div>
-            <p class="font-bold text-sm" style="color: var(--primary-blue);">Tony Lin</p>
-            <p class="text-xs text-slate-400">Role Here</p>
-          </div>
-          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
-            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
-              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
+              <img src="assets/memberphotos/liam.jpg" alt="Liam Hong" class="w-full h-full object-cover">
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Liam Hong</p>
-            <p class="text-xs text-slate-400">Role Here</p>
+            <p class="text-xs text-slate-400">Founder, President</p>
           </div>
           <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
-            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
-              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
+              <img src="assets/memberphotos/tony.png" alt="Tony Lin" class="w-full h-full object-cover">
+            </div>
+            <p class="font-bold text-sm" style="color: var(--primary-blue);">Tony Lin</p>
+            <p class="text-xs text-slate-400">Founder, President</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
+              <img src="assets/memberphotos/zack.png" alt="Zack Longo" class="w-full h-full object-cover">
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Zack Longo</p>
-            <p class="text-xs text-slate-400">Role Here</p>
+            <p class="text-xs text-slate-400">Founder, President</p>
           </div>
           <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
-            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
-              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
+              <img src="assets/memberphotos/leolorez.png" alt="Leo Lin" class="w-full h-full object-cover">
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Leo Lin</p>
-            <p class="text-xs text-slate-400">Role Here</p>
+            <p class="text-xs text-slate-400">Vice-President</p>
           </div>
           <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
             <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
               <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Hunter Highland</p>
-            <p class="text-xs text-slate-400">Role Here</p>
+            <p class="text-xs text-slate-400">Vice-President</p>
           </div>
         </div>
 
-        <!-- Full bios -->
-        <div class="space-y-10">
-          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-8 flex flex-col md:flex-row gap-8 items-center md:items-start">
-            <div class="w-40 h-48 rounded-xl bg-slate-200 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="user" style="width:40px;height:40px;color:#94a3b8;"></i>
-            </div>
-            <div class="flex-1">
-              <h3 class="text-xl font-bold mb-1" style="color: var(--primary-blue);">Chris Longo</h3>
-              <p class="text-sm text-indigo-400 font-medium mb-4">[ Role / Title Here ]</p>
-              <p class="text-slate-600 text-sm leading-relaxed mb-4">[ Bio placeholder — Add a paragraph describing Chris's background, role, and passion for the Youth Engineers Initiative mission. ]</p>
-              <button class="px-4 py-2 text-sm border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50">More →</button>
-            </div>
-          </div>
-          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-8 flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
-            <div class="w-40 h-48 rounded-xl bg-slate-200 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="user" style="width:40px;height:40px;color:#94a3b8;"></i>
-            </div>
-            <div class="flex-1">
-              <h3 class="text-xl font-bold mb-1" style="color: var(--primary-blue);">Tony Lin</h3>
-              <p class="text-sm text-indigo-400 font-medium mb-4">[ Role / Title Here ]</p>
-              <p class="text-slate-600 text-sm leading-relaxed mb-4">[ Bio placeholder — Add a paragraph describing Tony's background, role, and passion for the Youth Engineers Initiative mission. ]</p>
-              <button class="px-4 py-2 text-sm border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50">More →</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Chapter network -->
-        <div class="mt-16 text-center py-12 bg-slate-50 rounded-2xl">
-          <h2 class="text-2xl font-bold mb-2" style="color: var(--primary-blue);">Explore Our Chapter Network</h2>
-          <p class="text-slate-500 mb-6">Find a chapter near you or start your own.</p>
-          <button onclick="showPage('chapters')" class="px-6 py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">View Chapters →</button>
-        </div>
-
-        <!-- Ready CTA -->
-        <div class="mt-16 text-center py-12">
-          <h2 class="text-2xl font-bold mb-6" style="color: var(--primary-blue);">Ready to make an impact?</h2>
-          <button onclick="showPage('contact')" class="px-8 py-3 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Join Today!</button>
-        </div>
+        <!-- Full bios and CTAs removed per design request -->
       </div>
 
       <!-- Footer -->
@@ -482,7 +554,7 @@
 
           <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden"
                style="width:18rem;height:11.5rem;">
-            <i data-lucide="wrench" style="width:64px;height:64px;color:#64748b;"></i>
+            <img src="/assets/workshopsphotos/IMG_7022.jpeg" alt="Workshop photo 1" class="w-full h-full object-cover">
           </div>
         </div>
 
@@ -501,7 +573,7 @@
 
           <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden"
                style="width:18rem;height:11.5rem;">
-            <i data-lucide="book-open" style="width:64px;height:64px;color:#64748b;"></i>
+            <img src="/assets/workshopsphotos/IMG_8679.jpeg" alt="Workshop photo 2" class="w-full h-full object-cover">
           </div>
         </div>
 
@@ -521,7 +593,7 @@
 
           <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden"
                style="width:18rem;height:11.5rem;">
-            <i data-lucide="mail" style="width:64px;height:64px;color:#64748b;"></i>
+            <img src="/assets/workshopsphotos/IMG_8032.jpeg" alt="Workshop photo 3" class="w-full h-full object-cover">
           </div>
         </div>
 
@@ -568,7 +640,7 @@
 
           <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden"
                style="width:18rem;height:11.5rem;">
-            PROJECT IMAGE
+            <img src="/assets/projectspageimages/cart.jpeg" alt="Go-Kart Project" class="w-full h-full object-cover">
           </div>
         </div>
 
@@ -583,7 +655,7 @@
 
           <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden"
                style="width:18rem;height:11.5rem;">
-            PROJECT IMAGE
+            <img src="/assets/projectspageimages/droneplaceholder.png" alt="Drone Project" class="w-full h-full object-cover">
           </div>
         </div>
 
@@ -903,43 +975,14 @@ next generation of innovators.
         <p class="text-blue-200">Latest updates from Youth Engineers Initiative.</p>
       </div>
       <div class="max-w-6xl mx-auto px-6 py-16">
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
-            <div class="h-40 bg-slate-200 flex items-center justify-center"><i data-lucide="newspaper" style="width:32px;height:32px;color:#94a3b8;"></i></div>
-            <div class="p-5">
-              <p class="text-xs text-slate-400 mb-2">[ Date ]</p>
-              <h3 class="font-bold mb-2" style="color: var(--primary-blue);">[ News Article Title ]</h3>
-              <p class="text-slate-500 text-sm">[ Short summary of news article or announcement. ]</p>
-            </div>
-          </div>
-          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
-            <div class="h-40 bg-slate-200 flex items-center justify-center"><i data-lucide="newspaper" style="width:32px;height:32px;color:#94a3b8;"></i></div>
-            <div class="p-5">
-              <p class="text-xs text-slate-400 mb-2">[ Date ]</p>
-              <h3 class="font-bold mb-2" style="color: var(--primary-blue);">[ News Article Title ]</h3>
-              <p class="text-slate-500 text-sm">[ Short summary of news article or announcement. ]</p>
-            </div>
-          </div>
-          <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
-            <div class="h-40 bg-slate-200 flex items-center justify-center"><i data-lucide="newspaper" style="width:32px;height:32px;color:#94a3b8;"></i></div>
-            <div class="p-5">
-              <p class="text-xs text-slate-400 mb-2">[ Date ]</p>
-              <h3 class="font-bold mb-2" style="color: var(--primary-blue);">[ News Article Title ]</h3>
-              <p class="text-slate-500 text-sm">[ Short summary of news article or announcement. ]</p>
-            </div>
-          </div>
-        </div>
+        <!-- News articles removed per request. Embedded social widgets remain below. -->
       </div>
 
 <!-- Social Media Section -->
 <div class="bg-slate-50 py-16 px-6">
   <div class="max-w-6xl mx-auto">
 
-    <!-- Title -->
-    <div class="text-center mb-10">
-      <h2 class="text-3xl font-bold mb-2" style="color: var(--primary-blue);">Follow Us on <span style="color: var(--light-blue);">Social Media</span></h2>
-      <p class="text-slate-500">Stay up to date with our latest workshops, chapters, and announcements.</p>
-    </div>
+    <!-- Title removed per request; keeping embedded social widgets below. -->
 
     <!-- Embeds Side by Side -->
     <div class="grid md:grid-cols-2 gap-8 items-start">
@@ -1044,32 +1087,28 @@ next generation of innovators.
             <div class="text-center max-w-3xl mx-auto">
               <h1 class="text-4xl font-bold mb-4" style="color: var(--primary-blue);">We'd Love to Hear From You!</h1>
               <p class="text-slate-500 mb-8">Whether you're a student, educator, or organization — we'd love to connect with you and explore how we can work together.</p>
-              <div class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div class="flex flex-col gap-1">
-                    <label class="text-sm font-medium text-slate-700 text-left">First name</label>
-                    <input type="text" placeholder="First" class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <label class="text-sm font-medium text-slate-700 text-left">Last name</label>
-                    <input type="text" placeholder="Last" class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
-                  </div>
+              <form id="contact-form" class="space-y-4 text-left">
+                <div class="flex flex-col gap-1">
+                  <label for="contact-email" class="text-sm font-medium text-slate-700 text-left">Email address</label>
+                  <input id="contact-email" name="email" type="email" placeholder="email@example.com" required class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-200">
                 </div>
 
                 <div class="flex flex-col gap-1">
-                  <label class="text-sm font-medium text-slate-700 text-left">Email address</label>
-                  <input type="email" placeholder="email@example.com" class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                  <label for="contact-subject" class="text-sm font-medium text-slate-700 text-left">Subject</label>
+                  <input id="contact-subject" name="subject" type="text" placeholder="Subject" required class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-200">
                 </div>
 
                 <div class="flex flex-col gap-1">
-                  <label class="text-sm font-medium text-slate-700 text-left">Message</label>
-                  <textarea rows="5" placeholder="Your message..." class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none"></textarea>
+                  <label for="contact-message" class="text-sm font-medium text-slate-700 text-left">Message</label>
+                  <textarea id="contact-message" name="message" rows="5" placeholder="Your message..." required class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none"></textarea>
                 </div>
+
+                <p id="contact-status" class="text-sm text-slate-500"></p>
 
                 <div class="pt-2">
-                  <button class="w-full md:w-auto py-3 px-6 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Submit</button>
+                  <button type="submit" class="w-full md:w-auto py-3 px-6 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Submit</button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
 
@@ -1106,6 +1145,121 @@ next generation of innovators.
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let parallaxFrame = null;
     const scrollContainer = document.querySelector('main');
+
+    const carouselSlides = Array.from(document.querySelectorAll('[data-photo-carousel-track] .photo-carousel-slide'));
+    const carouselTrack = document.querySelector('[data-photo-carousel-track]');
+    const carouselDots = document.querySelector('[data-photo-carousel-dots]');
+    const carouselPrev = document.querySelector('[data-photo-carousel-prev]');
+    const carouselNext = document.querySelector('[data-photo-carousel-next]');
+    let carouselIndex = 0;
+    let carouselTimer = null;
+    const contactForm = document.getElementById('contact-form');
+    const contactStatus = document.getElementById('contact-status');
+
+    function updateCarousel() {
+      if (!carouselTrack || carouselSlides.length === 0) return;
+
+      carouselTrack.style.transform = `translateX(-${carouselIndex * 100}%)`;
+
+      if (carouselDots) {
+        carouselDots.querySelectorAll('[data-carousel-dot]').forEach((dot, index) => {
+          dot.classList.toggle('active', index === carouselIndex);
+          dot.setAttribute('aria-pressed', String(index === carouselIndex));
+        });
+      }
+    }
+
+    function goToCarouselSlide(nextIndex) {
+      if (carouselSlides.length === 0) return;
+      carouselIndex = (nextIndex + carouselSlides.length) % carouselSlides.length;
+      updateCarousel();
+    }
+
+    function startCarousel() {
+      if (carouselSlides.length < 2 || prefersReducedMotion) return;
+
+      carouselTimer = window.setInterval(() => {
+        goToCarouselSlide(carouselIndex + 1);
+      }, 3200);
+    }
+
+    if (carouselDots && carouselSlides.length > 0) {
+      carouselDots.innerHTML = carouselSlides
+        .map((_, index) => `<button type="button" class="photo-carousel-dot ${index === 0 ? 'active' : ''}" data-carousel-dot aria-label="Go to photo ${index + 1}" aria-pressed="${index === 0}"></button>`)
+        .join('');
+
+      carouselDots.querySelectorAll('[data-carousel-dot]').forEach((dot, index) => {
+        dot.addEventListener('click', () => goToCarouselSlide(index));
+      });
+    }
+
+    if (carouselPrev) {
+      carouselPrev.addEventListener('click', () => goToCarouselSlide(carouselIndex - 1));
+    }
+
+    if (carouselNext) {
+      carouselNext.addEventListener('click', () => goToCarouselSlide(carouselIndex + 1));
+    }
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        goToCarouselSlide(carouselIndex - 1);
+      }
+
+      if (event.key === 'ArrowRight') {
+        goToCarouselSlide(carouselIndex + 1);
+      }
+    });
+
+    updateCarousel();
+    startCarousel();
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById('contact-email').value.trim();
+        const subject = document.getElementById('contact-subject').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
+
+        if (!email || !subject || !message) {
+          if (contactStatus) {
+            contactStatus.textContent = 'Please fill out your email, subject, and message.';
+          }
+          return;
+        }
+
+        if (contactStatus) {
+          contactStatus.textContent = 'Sending your message...';
+        }
+
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, subject, message }),
+        })
+          .then(async (response) => {
+            const payload = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+              throw new Error(payload.error || 'Unable to send message right now.');
+            }
+
+            if (contactStatus) {
+              contactStatus.textContent = 'Message sent successfully.';
+            }
+
+            contactForm.reset();
+          })
+          .catch((error) => {
+            if (contactStatus) {
+              contactStatus.textContent = error.message;
+            }
+          });
+      });
+    }
 
     function updateParallax() {
       if (prefersReducedMotion || parallaxLayers.length === 0) return;
