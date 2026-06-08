@@ -158,6 +158,13 @@
     .photo-carousel-button.next { right: 0.85rem; }
     .photo-carousel-dots {
       display: flex;
+    }
+    /* Conveyor belt styles */
+    .conveyor { overflow: hidden; width: 100%; }
+    .conveyor-track { display: flex; gap: 1rem; align-items: center; will-change: transform; animation: conveyor 20s linear infinite; }
+    .conveyor-track:hover { animation-play-state: paused; }
+    .conveyor-item img { width: 220px; height: 130px; object-fit: cover; display: block; border-radius: 0.5rem; box-shadow: 0 8px 20px rgba(15,23,42,0.12); }
+    @keyframes conveyor { from { transform: translateX(0); } to { transform: translateX(-50%); } }
       justify-content: center;
       gap: 0.5rem;
       padding-top: 0.85rem;
@@ -375,35 +382,35 @@
           <!-- Each card: swap out placeholder with real photo/info -->
           <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
             <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
-              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+              <img src="assets/memberphotos/cridih.png" alt="Chris Longo" class="w-full h-full object-cover">
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Chris Longo</p>
             <p class="text-xs text-slate-400">Founder, President</p>
           </div>
           <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
-            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
-              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
+              <img src="assets/memberphotos/liam.jpg" alt="Liam Hong" class="w-full h-full object-cover">
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Liam Hong</p>
             <p class="text-xs text-slate-400">Founder, President</p>
           </div>
           <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
-            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
-              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
+              <img src="assets/memberphotos/tony.png" alt="Tony Lin" class="w-full h-full object-cover">
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Tony Lin</p>
             <p class="text-xs text-slate-400">Founder, President</p>
           </div>
           <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
-            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
-              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
+              <img src="assets/memberphotos/zack.png" alt="Zack Longo" class="w-full h-full object-cover">
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Zack Longo</p>
             <p class="text-xs text-slate-400">Founder, President</p>
           </div>
           <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden text-center p-6">
-            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 flex items-center justify-center">
-              <i data-lucide="user" style="width:32px;height:32px;color:#94a3b8;"></i>
+            <div class="w-20 h-20 rounded-full bg-slate-200 mx-auto mb-3 overflow-hidden flex items-center justify-center">
+              <img src="assets/memberphotos/leolorez.png" alt="Leo Lin" class="w-full h-full object-cover">
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Leo Lin</p>
             <p class="text-xs text-slate-400">Vice-President</p>
@@ -740,32 +747,35 @@
         <p class="text-center text-slate-500 mb-12">As a Youth Engineers Initiative member, take resources from your community with this official project slideshow, linked here.</p>
 
         <div class="space-y-10">
-          <!-- Wind Turbine -->
-          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row gap-6 items-center">
-            <div class="flex-1">
-              <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Wind Turbine</h3>
-              <p class="text-slate-500 text-sm leading-relaxed mb-4">Wind turbines are a powerful source of renewable energy. Learn how to create and test your own model of one! For Educators, this is a great resource for renewable energy. Learn the fundamentals of our earthquake-resistant engineering here.</p>
-              <a href="https://drive.google.com/file/d/1RHVmJ7BXTDhzawZHD_Ij9Nkia5tRBmiL/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
-            </div>
-            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
-              <img src="/assets/workshopcovers/windturbinecover.png" alt="Wind Turbine cover" class="w-full h-full object-cover">
+          <!-- Our Purpose (conveyor) -->
+          <div class="max-w-6xl mx-auto px-6 py-16">
+            <div class="text-center">
+              <h2 class="text-3xl font-bold mb-6" style="color: var(--primary-blue);">Our <span style="color: var(--light-blue)">Purpose</span></h2>
+
+              <!-- Conveyor belt of images -->
+              <div class="conveyor my-8" role="region" aria-label="Impact photo conveyor">
+                <div class="conveyor-track" aria-hidden="true">
+                  <div class="conveyor-item"><img src="/assets/photowheelhomepage/IMG_6968.jpeg" alt="Students working on projects"></div>
+                  <div class="conveyor-item"><img src="/assets/photowheelhomepage/IMG_7191.jpeg" alt="Workshop activity"></div>
+                  <div class="conveyor-item"><img src="/assets/photowheelhomepage/IMG_8052.jpeg" alt="Group collaboration"></div>
+                  <div class="conveyor-item"><img src="/assets/photowheelhomepage/IMG_8634.jpg" alt="Hands-on learning"></div>
+                  <div class="conveyor-item"><img src="/assets/photowheelhomepage/IMG_8749.jpeg" alt="Student presentation"></div>
+
+                  <!-- repeat sequence for seamless looping -->
+                  <div class="conveyor-item"><img src="/assets/photowheelhomepage/IMG_6968.jpeg" alt="Students working on projects"></div>
+                  <div class="conveyor-item"><img src="/assets/photowheelhomepage/IMG_7191.jpeg" alt="Workshop activity"></div>
+                  <div class="conveyor-item"><img src="/assets/photowheelhomepage/IMG_8052.jpeg" alt="Group collaboration"></div>
+                  <div class="conveyor-item"><img src="/assets/photowheelhomepage/IMG_8634.jpg" alt="Hands-on learning"></div>
+                  <div class="conveyor-item"><img src="/assets/photowheelhomepage/IMG_8749.jpeg" alt="Student presentation"></div>
+                </div>
+              </div>
+
+              <div class="max-w-3xl mx-auto text-center mt-6">
+                <p class="text-slate-600 leading-relaxed mb-4">Many students lack early access to hands-on engineering experiences, leaving them unaware of their potential in STEM. This gap limits creative exploration and problem-solving at a critical age.</p>
+                <p class="text-slate-600 leading-relaxed">Youth Engineers Initiative exists to build creative confidence and fill the gap in early STEM education through engaging, hands-on workshops that inspire curiosity and empower the next generation of innovators.</p>
+              </div>
             </div>
           </div>
-
-          <!-- Truss Bridges -->
-          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row-reverse gap-6 items-center">
-            <div class="flex-1">
-              <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Truss Bridges</h3>
-              <p class="text-slate-500 text-sm leading-relaxed mb-4">The bridges we drive over every day are carefully designed with engineering, so maybe re-create designs from bridge today!</p>
-              <a href="https://drive.google.com/file/d/1Ni3yPTZHUPl0tbLnQ6S7xl7nb4c6pi5Q/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">LINK</a>
-            </div>
-            <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width: 18rem; height: 11.5rem;">
-              <img src="/assets/workshopcovers/trussbridgescover.png" alt="Truss Bridges cover" class="w-full h-full object-cover">
-            </div>
-          </div>
-
-          <!-- Earthquake Tower -->
-          <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row gap-6 items-center">
             <div class="flex-1">
               <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Earthquake Tower</h3>
               <p class="text-slate-500 text-sm leading-relaxed mb-4">Wind turbines are a powerful source of renewable energy. Learn how to create and test your own model of one! For Educators, this is a significant resource for renewable energy. Learn the fundamentals of our earthquake-resistant engineering here.</p>
