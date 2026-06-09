@@ -1,74 +1,143 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const fs = require('fs');
-const path = require('path');
-const express = require('express');
-const cors = require('cors');
-const nodemailer = require('nodemailer');
+const express = require("express");
+const nodemailer = require("nodemailer");
+const path = require("path");
 
 const app = express();
-const port = process.env.PORT || 3001;
-const buildDirectory = path.join(__dirname, 'build');
-const publicDirectory = path.join(__dirname, 'public');
-const staticDirectory = fs.existsSync(buildDirectory) ? buildDirectory : publicDirectory;
+const PORT = process.env.PORT || 3001;
 
-app.use(cors());
-app.use(express.json({ limit: '50kb' }));
-app.use(express.static(staticDirectory));
+// =========================
+// MIDDLEWARE
+// =========================
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-function createTransporter() {
-  const host = process.env.SMTP_HOST;
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+// serve frontend
+app.use(express.static(path.join(__dirname, "public")));
 
-  if (!host || !user || !pass) {
-    return null;
+// =========================
+// EMAIL SETUP (GMAIL)
+// =========================
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+// Optional debug check (VERY useful)
+transporter.verify((error) => {
+  if (error) {
+    console.log("❌ Email server not ready:", error);
+  } else {
+    console.log("✅ Email server ready");
+  }
+});
+
+// =========================
+// CONTACT + PARTNER ROUTE
+// =========================
+app.post("/contact", async (req, res) => {
+  console.log("🔥 FORM HIT RECEIVED 🔥");
+  console.log(req.body);
+
+  const {
+    email,
+    subject,
+    message,
+    name,
+    organization,
+    role,
+    interest,
+    students,
+    timeframe,
+  } = req.body;
+
+  const isPartnerForm = organization || role || interest;
+
+  let mailSubject = "";
+  let mailBody = "";
+
+  // =========================
+  // PARTNER FORM
+  // =========================
+  if (isPartnerForm) {
+    mailSubject = `🤝 Partnership Request - ${organization || "Unknown Org"}`;
+
+    mailBody = `
+NEW PARTNERSHIP REQUEST
+
+Name: ${name || "N/A"}
+Email: ${email || "N/A"}
+Organization: ${organization || "N/A"}
+Role: ${role || "N/A"}
+Interest: ${interest || "N/A"}
+
+Expected Students: ${students || "N/A"}
+Timeframe: ${timeframe || "N/A"}
+
+Message:
+${message || "N/A"}
+    `;
   }
 
-  return nodemailer.createTransport({
-    host,
-    port: Number(process.env.SMTP_PORT || 587),
-    secure: String(process.env.SMTP_SECURE || '').toLowerCase() === 'true',
-    auth: { user, pass },
-  });
-}
+  // =========================
+  // CONTACT FORM
+  // =========================
+  else {
+    mailSubject = `📩 Contact Form - ${subject || "No Subject"}`;
 
-app.post('/api/contact', async (req, res) => {
+    mailBody = `
+NEW CONTACT MESSAGE
+
+Email: ${email || "N/A"}
+Subject: ${subject || "N/A"}
+
+Message:
+${message || "N/A"}
+    `;
+  }
+
+  // =========================
+  // SEND EMAIL
+  // =========================
   try {
-    const email = String(req.body.email || '').trim();
-    const subject = String(req.body.subject || '').trim();
-    const message = String(req.body.message || '').trim();
-
-    if (!email || !subject || !message) {
-      return res.status(400).json({ error: 'Email, subject, and message are required.' });
-    }
-
-    const transporter = createTransporter();
-
-    if (!transporter) {
-      return res.status(500).json({
-        error: 'Mail configuration is missing. Set SMTP_HOST, SMTP_PORT, SMTP_USER, and SMTP_PASS in the environment.',
-      });
-    }
-
     await transporter.sendMail({
-      from: process.env.MAIL_FROM || process.env.SMTP_USER,
-      to: process.env.MAIL_TO || 'youthengineersinitiative@gmail.com',
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
       replyTo: email,
-      subject,
-      text: `From: ${email}\n\n${message}`,
+      subject: mailSubject,
+      text: mailBody,
     });
 
-    return res.json({ ok: true });
-  } catch (error) {
-    return res.status(500).json({ error: 'Unable to send email right now.' });
+    console.log("📨 Email sent successfully");
+
+    return res.status(200).json({
+      success: true,
+      message: "Email sent successfully",
+    });
+  } catch (err) {
+    console.error("❌ EMAIL ERROR:", err);
+
+    return res.status(500).json({
+      success: false,
+      error: "Email failed to send",
+    });
   }
 });
 
+// =========================
+// FALLBACK ROUTE
+// =========================
 app.use((req, res) => {
-  res.sendFile(path.join(staticDirectory, 'index.html'));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+// =========================
+// START SERVER
+// =========================
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
