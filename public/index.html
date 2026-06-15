@@ -186,6 +186,77 @@
       width: 1.8rem;
       background: linear-gradient(90deg, #1d3952, #5999c4);
     }
+    .media-carousel {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .media-carousel-frame {
+      overflow: hidden;
+      border-radius: 1.75rem;
+      flex: 1 1 auto;
+      border: 1px solid rgba(29, 57, 82, 0.12);
+      background: linear-gradient(160deg, rgba(29, 57, 82, 0.12), rgba(29, 57, 82, 0.04));
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+    }
+    .media-carousel-track {
+      display: flex;
+      transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+    .media-carousel-slide {
+      flex: 0 0 100%;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+    .media-carousel-item img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+      border-radius: 1rem;
+    }
+    .media-carousel-button {
+      width: 3rem;
+      height: 3rem;
+      border: 0;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #1d3952;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .media-carousel-button:hover,
+    .media-carousel-button:focus-visible {
+      outline: 2px solid rgba(86, 137, 177, 0.85);
+      outline-offset: 2px;
+      background: #ffffff;
+    }
+    @media (max-width: 1024px) {
+      .media-carousel-slide {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 768px) {
+      .media-carousel {
+        gap: 0.75rem;
+      }
+      .media-carousel-slide {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .media-carousel-button {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
   </style>
 </head>
 <body class="h-full bg-slate-50">
@@ -1102,13 +1173,52 @@ next generation of innovators.
         <p class="text-blue-200">Photos and videos from our resources and chapters.</p>
       </div>
       <div class="max-w-6xl mx-auto px-6 py-16">
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
-          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
-          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
-          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
-          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
-          <div class="h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400"><i data-lucide="image" style="width:28px;height:28px;"></i></div>
+        <div class="media-carousel">
+          <button type="button" class="media-carousel-button prev" data-media-carousel-prev aria-label="Previous media group">
+            <span aria-hidden="true">←</span>
+          </button>
+
+          <div class="media-carousel-frame">
+            <div class="media-carousel-track" data-media-carousel-track>
+              <div class="media-carousel-slide">
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_6968.jpeg" alt="media 1"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_7191.jpeg" alt="media 2"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_8052.jpeg" alt="media 3"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_8634.jpg" alt="media 4"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/engineeringenergy.png" alt="media 5"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_6968.jpeg" alt="media 6"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_7191.jpeg" alt="media 7"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_8052.jpeg" alt="media 8"></div>
+              </div>
+
+              <div class="media-carousel-slide">
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_6968.jpeg" alt="media 1"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_7191.jpeg" alt="media 2"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_8052.jpeg" alt="media 3"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_8634.jpg" alt="media 4"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/engineeringenergy.png" alt="media 5"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_6968.jpeg" alt="media 6"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_7191.jpeg" alt="media 7"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_8052.jpeg" alt="media 8"></div>
+              </div>
+
+<div class="media-carousel-slide">
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_6968.jpeg" alt="media 1"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_7191.jpeg" alt="media 2"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_8052.jpeg" alt="media 3"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_8634.jpg" alt="media 4"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/engineeringenergy.png" alt="media 5"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_6968.jpeg" alt="media 6"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_7191.jpeg" alt="media 7"></div>
+                <div class="media-carousel-item"><img src="/assets/photowheelhomepage/IMG_8052.jpeg" alt="media 8"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <button type="button" class="media-carousel-button next" data-media-carousel-next aria-label="Next media group">
+            <span aria-hidden="true">→</span>
+          </button>
         </div>
       </div>
       <!-- Footer -->
@@ -1389,6 +1499,7 @@ next generation of innovators.
     const carouselDots = document.querySelector('[data-photo-carousel-dots]');
     const carouselPrev = document.querySelector('[data-photo-carousel-prev]');
     const carouselNext = document.querySelector('[data-photo-carousel-next]');
+    const mediaCarouselElements = Array.from(document.querySelectorAll('.media-carousel'));
     let carouselIndex = 0;
     let carouselTimer = null;
    // CONTACT
@@ -1484,6 +1595,72 @@ if (partnerForm) {
     if (carouselNext) {
       carouselNext.addEventListener('click', () => goToCarouselSlide(carouselIndex + 1));
     }
+
+    function initMediaCarousel(carousel) {
+      const carouselTrack = carousel.querySelector('[data-media-carousel-track]');
+      const carouselSlides = Array.from(carousel.querySelectorAll('.media-carousel-slide'));
+      const carouselPrev = carousel.querySelector('[data-media-carousel-prev]');
+      const carouselNext = carousel.querySelector('[data-media-carousel-next]');
+      let slideIndex = 0;
+      let carouselTimer = null;
+
+      function updateCarousel() {
+        if (!carouselTrack || carouselSlides.length === 0) return;
+
+        carouselTrack.style.transform = `translateX(-${slideIndex * 100}%)`;
+      }
+
+      function goToSlide(nextIndex) {
+        slideIndex = (nextIndex + carouselSlides.length) % carouselSlides.length;
+        updateCarousel();
+      }
+
+      function startCarousel() {
+        if (carouselSlides.length <= 1 || prefersReducedMotion) return;
+
+        carouselTimer = window.setInterval(() => {
+          goToSlide(slideIndex + 1);
+        }, 3200);
+      }
+
+      function resetCarouselTimer() {
+        if (carouselTimer) {
+          window.clearInterval(carouselTimer);
+          startCarousel();
+        }
+      }
+
+      if (carouselPrev) {
+        carouselPrev.addEventListener('click', () => {
+          goToSlide(slideIndex - 1);
+          resetCarouselTimer();
+        });
+      }
+
+      if (carouselNext) {
+        carouselNext.addEventListener('click', () => {
+          goToSlide(slideIndex + 1);
+          resetCarouselTimer();
+        });
+      }
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+          goToSlide(slideIndex - 1);
+          resetCarouselTimer();
+        }
+
+        if (event.key === 'ArrowRight') {
+          goToSlide(slideIndex + 1);
+          resetCarouselTimer();
+        }
+      });
+
+      updateCarousel();
+      startCarousel();
+    }
+
+    mediaCarouselElements.forEach(initMediaCarousel);
 
     window.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowLeft') {
