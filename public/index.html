@@ -1751,7 +1751,7 @@ if (partnerForm) {
     };
 
     try {
-      const res = await fetch("https://youth-engineers-initiative.onrender.com/contact", {
+      const res = await fetch("/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -1915,7 +1915,7 @@ if (partnerForm) {
           contactStatus.textContent = 'Sending your message...';
         }
 
-        fetch('https://youth-engineers-initiative.onrender.com/contact', {
+        fetch('/contact', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
