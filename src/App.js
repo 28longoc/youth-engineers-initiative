@@ -35,7 +35,7 @@ function App() {
     }, 3200);
 
     return () => window.clearInterval(intervalId);
-  }, [slides.length]);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -53,7 +53,7 @@ function App() {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [slides.length]);
+  }, []);
 
   const goToPrevious = () => {
     setActiveIndex((currentIndex) => (currentIndex - 1 + slides.length) % slides.length);
