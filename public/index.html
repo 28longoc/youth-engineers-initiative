@@ -1928,13 +1928,13 @@ try {
   body: JSON.stringify({ email, subject, message }),
 })
   .then(async (response) => {
-    let payload = {};
+  let payload = {};
 
-    try {
-      payload = await response.json();
-    } catch (e) {
-      payload = {};
-    }
+  try {
+    payload = await response.json();
+  } catch (e) {
+    payload = { error: "Server did not return JSON" };
+  }
 
     if (!response.ok) {
       throw new Error(payload.error || 'Unable to send message right now.');
