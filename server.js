@@ -40,9 +40,93 @@ transporter.verify((error) => {
 // CONTACT + PARTNER ROUTE
 // =========================
 
-app.post("/contact", (req, res) => {
-  console.log("TEST ROUTE HIT");
-  return res.json({ ok: true });
+app.post("/contact", async (req, res) => {
+  console.log("🔥 FORM HIT RECEIVED 🔥");
+  console.log(req.body);
+
+  const {
+    email,
+    subject,
+    message,
+    name,
+    organization,
+    role,
+    interest,
+    students,
+    timeframe,
+  } = req.body;
+
+  const isPartnerForm = organization || role || interest;
+
+  let mailSubject = "";
+  let mailBody = "";
+
+  // =========================
+  // PARTNER FORM
+  // =========================
+  if (isPartnerForm) {
+    mailSubject = `🤝 Partnership Request - ${organization || "Unknown Org"}`;
+
+    mailBody = `
+NEW PARTNERSHIP REQUEST
+
+Name: ${name || "N/A"}
+Email: ${email || "N/A"}
+Organization: ${organization || "N/A"}
+Role: ${role || "N/A"}
+Interest: ${interest || "N/A"}
+
+Expected Students: ${students || "N/A"}
+Timeframe: ${timeframe || "N/A"}
+
+Message:
+${message || "N/A"}
+    `;
+  }
+
+  // =========================
+  // CONTACT FORM
+  // =========================
+  else {
+    mailSubject = `📩 Contact Form - ${subject || "No Subject"}`;
+
+    mailBody = `
+NEW CONTACT MESSAGE
+
+Email: ${email || "N/A"}
+Subject: ${subject || "N/A"}
+
+Message:
+${message || "N/A"}
+    `;
+  }
+
+  // =========================
+  // SEND EMAIL
+  // =========================
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      replyTo: email,
+      subject: mailSubject,
+      text: mailBody,
+    });
+
+    console.log("📨 Email sent successfully");
+
+    return res.status(200).json({
+      success: true,
+      message: "Email sent successfully",
+    });
+  } catch (err) {
+    console.error("❌ EMAIL ERROR:", err);
+
+    return res.status(500).json({
+      success: false,
+      error: "Email failed to send",
+    });
+  }
 });
 
 
