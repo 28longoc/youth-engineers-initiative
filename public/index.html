@@ -1752,22 +1752,29 @@ if (partnerForm) {
 
     try {
       const res = await fetch("https://youth-engineers-initiative.onrender.com/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(formData),
+});
 
-      let data = {};
+const text = await res.text();
+let data;
+
 try {
-  data = await res.json();
-} catch (e) {
-  data = { error: "Invalid server response" };
+  data = JSON.parse(text);
+} catch {
+  throw new Error("Server did not return JSON. Response was: " + text);
 }
 
-      if (!res.ok) throw new Error(data.error);
+if (!res.ok) {
+  throw new Error(data.error || "Request failed");
+}
 
-      if (partnerStatus) partnerStatus.textContent = "Message sent successfully!";
-      partnerForm.reset();
+if (partnerStatus) {
+  partnerStatus.textContent = "Message sent successfully!";
+}
+
+partnerForm.reset();
 
     } catch (err) {
       if (partnerStatus) partnerStatus.textContent = err.message;
