@@ -1,6 +1,7 @@
 .App {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   color: #f8fafc;
   background:
     radial-gradient(circle at top left, rgba(125, 211, 252, 0.24), transparent 40%),
@@ -161,6 +162,121 @@
   color: rgba(248, 250, 252, 0.88);
 }
 
+.forms-section {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0 96px;
+}
+
+.forms-intro {
+  max-width: 620px;
+  margin-bottom: 32px;
+}
+
+.forms-intro h2,
+.inquiry-form h3 {
+  margin: 8px 0 12px;
+  color: #f8fafc;
+}
+
+.forms-intro h2 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  letter-spacing: -0.04em;
+}
+
+.forms-intro p:not(.eyebrow) {
+  color: rgba(226, 232, 240, 0.84);
+  line-height: 1.65;
+}
+
+.forms-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.18);
+}
+
+.form-kicker {
+  margin: 0;
+  color: #7dd3fc;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.inquiry-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #e2e8f0;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.inquiry-form input,
+.inquiry-form textarea,
+.inquiry-form select {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid rgba(226, 232, 240, 0.28);
+  border-radius: 10px;
+  padding: 11px 12px;
+  background: rgba(15, 23, 42, 0.72);
+  color: #f8fafc;
+  font: inherit;
+}
+
+.inquiry-form textarea {
+  resize: vertical;
+}
+
+.inquiry-form input:focus,
+.inquiry-form textarea:focus,
+.inquiry-form select:focus {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+
+.inquiry-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 13px 18px;
+  background: linear-gradient(90deg, #7dd3fc, #fcd34d);
+  color: #07121f;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.inquiry-form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.form-status {
+  margin: 0;
+  font-weight: 600;
+}
+
+.form-status.success { color: #bbf7d0; }
+.form-status.error { color: #fecaca; }
+
+.website-field {
+  position: absolute;
+  left: -10000px;
+}
+
 @media (max-width: 920px) {
   .hero-shell {
     grid-template-columns: 1fr;
@@ -176,6 +292,10 @@
 
   .slide-image {
     height: min(58vh, 620px);
+  }
+
+  .forms-grid {
+    grid-template-columns: 1fr;
   }
 }
 

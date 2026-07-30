@@ -40,7 +40,7 @@ transporter.verify((error) => {
 // CONTACT + PARTNER ROUTE
 // =========================
 
-app.post("/contact", async (req, res) => {
+app.post(["/contact", "/api/contact"], async (req, res) => {
   console.log("🔥 FORM HIT RECEIVED 🔥");
   console.log(req.body);
 
@@ -54,9 +54,23 @@ app.post("/contact", async (req, res) => {
     interest,
     students,
     timeframe,
+    formType,
+    website,
   } = req.body;
 
-  const isPartnerForm = organization || role || interest;
+  if (website) {
+    return res.status(200).json({ success: true });
+  }
+
+  if (!name || !email || !message || !/^\S+@\S+\.\S+$/.test(email)) {
+    return res.status(400).json({ success: false, error: "Please complete the required fields." });
+  }
+
+  const isPartnerForm = formType === "partner" || organization || role || interest;
+
+  if (isPartnerForm && (!organization || !role || !interest)) {
+    return res.status(400).json({ success: false, error: "Please complete the partnership details." });
+  }
 
   let mailSubject = "";
   let mailBody = "";
@@ -94,6 +108,7 @@ ${message || "N/A"}
 NEW CONTACT MESSAGE
 
 Email: ${email || "N/A"}
+Name: ${name || "N/A"}
 Subject: ${subject || "N/A"}
 
 Message:
@@ -107,7 +122,7 @@ ${message || "N/A"}
   try {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
+      to: process.env.MAIL_TO || "youthengineersinitiative@gmail.com",
       replyTo: email,
       subject: mailSubject,
       text: mailBody,

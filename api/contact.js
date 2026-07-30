@@ -16,13 +16,23 @@ export default async function handler(req, res) {
       interest,
       students,
       timeframe,
+      formType,
+      website,
     } = req.body || {};
 
-    if (!email || !message) {
-      return res.status(400).json({ error: "Missing fields" });
+    if (website) {
+      return res.status(200).json({ success: true });
     }
 
-    const isPartnerForm = organization || role || interest;
+    if (!email || !message || !name || !/^\S+@\S+\.\S+$/.test(email)) {
+      return res.status(400).json({ error: "Please complete the required fields." });
+    }
+
+    const isPartnerForm = formType === "partner" || organization || role || interest;
+
+    if (isPartnerForm && (!organization || !role || !interest)) {
+      return res.status(400).json({ error: "Please complete the partnership details." });
+    }
 
     let mailSubject = "";
     let mailBody = "";
@@ -47,6 +57,7 @@ ${message}
       mailSubject = `Contact Form - ${subject || "No Subject"}`;
       mailBody = `
 EMAIL: ${email}
+NAME: ${name || "N/A"}
 SUBJECT: ${subject}
 
 MESSAGE:
@@ -64,7 +75,7 @@ ${message}
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
+      to: process.env.MAIL_TO || "youthengineersinitiative@gmail.com",
       replyTo: email,
       subject: mailSubject,
       text: mailBody,
