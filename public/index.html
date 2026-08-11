@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en" class="h-full">
 <head>
   <meta charset="UTF-8">
@@ -304,7 +304,6 @@
             <button class="px-3 py-2 text-sm font-medium text-white rounded-md transition flex items-center gap-1" style="background-color: var(--primary-blue);">Get Involved <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
             <div class="dropdown-menu absolute top-full right-0 mt-1 w-52 bg-white rounded-lg shadow-lg border border-slate-100 py-2 z-50">
               <button onclick="showPage('chapters')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Start a Chapter</button>
-              <button onclick="showPage('partner')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Partner With Us</button>
               <button onclick="showPage('contact')" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-700">Contact Us</button>
             </div>
           </div>
@@ -344,7 +343,7 @@
           <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full text-left px-3 py-2 text-sm font-medium text-white rounded-md flex items-center justify-between" style="background-color: var(--primary-blue);">Get Involved <i data-lucide="chevron-down" style="width:14px;height:14px;"></i></button>
           <div class="hidden pl-4 space-y-1 pt-1">
             <button onclick="showPage('chapters')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Start a Chapter</button>
-            <button onclick="showPage('contact')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Partner With Us</button>
+            <button onclick="showPage('contact')" class="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-indigo-700">Contact Us</button>
           </div>
         </div>
       </div>
@@ -384,7 +383,7 @@
             <div class="photo-carousel">
               <div class="photo-carousel-frame">
                 <button type="button" class="photo-carousel-button prev" data-photo-carousel-prev aria-label="Previous photo">
-                  <span aria-hidden="true">←</span>
+                  <span aria-hidden="true">&larr;</span>
                 </button>
                 <div class="photo-carousel-track" data-photo-carousel-track>
                   <div class="photo-carousel-slide">
@@ -404,7 +403,7 @@
                   </div>
                 </div>
                 <button type="button" class="photo-carousel-button next" data-photo-carousel-next aria-label="Next photo">
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">&rarr;</span>
                 </button>
               </div>
               <div class="photo-carousel-dots" data-photo-carousel-dots aria-label="Photo carousel navigation"></div>
@@ -413,7 +412,7 @@
           <div>
             <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-blue);">Equipping Youth to Design <span style="color: var(--light-blue)">the Future</span></h2>
             <p class="text-slate-600 leading-relaxed mb-6">At the Youth Engineers Initiative, we believe every student has the potential to change the world. Through hands-on engineering workshops, mentorship, and real-world challenges, we teach creativity and problem-solving to the next generation of innovators.</p>
-            <button onclick="showPage('about')" class="px-6 py-3 text-sm font-semibold text-white rounded-lg transition hover:opacity-90" style="background-color: var(--primary-blue);">SEE OUR IMPACT →</button>
+            <button onclick="showPage('about')" class="px-6 py-3 text-sm font-semibold text-white rounded-lg transition hover:opacity-90" style="background-color: var(--primary-blue);">SEE OUR IMPACT &rarr;</button>
           </div>
         </div>
       </div>
@@ -498,7 +497,7 @@
             </div>
             <p class="font-bold text-sm" style="color: var(--primary-blue);">Hunter Highland</p>
             <p class="text-xs text-slate-400">Vice-President</p>
-          </div> 
+          </div>
         </div>
 
         <!-- Full bios and CTAs removed per design request -->
@@ -529,7 +528,7 @@
         <!-- Existing Chapters -->
         <div class="mb-16">
           <h2 class="text-2xl font-bold mb-3" style="color: var(--primary-blue);">Existing Chapters</h2>
-          <p class="text-slate-500 text-sm mb-8">Please check if your school already has a chapter. The Youth Engineers Initiative School Chapters for the 2025–2026 school year are at the following schools (more to come):</p>
+          <p class="text-slate-500 text-sm mb-8">Please check if your school already has a chapter. The Youth Engineers Initiative School Chapters for the 2025-2026 school year are at the following schools (more to come):</p>
           <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
             <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
               <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-3 flex items-center justify-center">
@@ -669,9 +668,9 @@
               We partner with schools, camps, community centers, and youth organizations to bring engineering workshops directly to students.
             </p>
 
-            <button onclick="showPage('partner')"
+            <button onclick="showPage('contact')"
               class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">
-              PARTNER WITH US
+              GET IN TOUCH
             </button>
           </div>
 
@@ -815,7 +814,7 @@
 
   </div>
 </section>
-    
+
     <!-- ==================== RESOURCES ==================== -->
     <section id="page-resources" class="page-section">
       <div class="section-inner">
@@ -1155,15 +1154,15 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
         <p class="text-slate-600 leading-relaxed">"The program is incredibly well structured for middle schoolers. It challenges them at the right level and builds both their skills and their confidence."</p>
-        <p class="text-sm font-semibold mt-4" style="color: var(--primary-blue);">— Anonymous Parent</p>
+        <p class="text-sm font-semibold mt-4" style="color: var(--primary-blue);">- Anonymous Parent</p>
       </div>
       <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
         <p class="text-slate-600 leading-relaxed">"I never thought I was a science or math person until I joined YEI. Now I look forward to every single workshop."</p>
-        <p class="text-sm font-semibold mt-4" style="color: var(--primary-blue);">— Anonymous Student</p>
+        <p class="text-sm font-semibold mt-4" style="color: var(--primary-blue);">- Anonymous Student</p>
       </div>
       <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
         <p class="text-slate-600 leading-relaxed">"Building real projects with my hands taught me more than I expected. YEI showed me that engineering is something I can actually do."</p>
-        <p class="text-sm font-semibold mt-4" style="color: var(--primary-blue);">— Anonymous Student</p>
+        <p class="text-sm font-semibold mt-4" style="color: var(--primary-blue);">- Anonymous Student</p>
       </div>
     </div>
   </div>
@@ -1244,7 +1243,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id="featured-content"
             class="text-slate-600 leading-relaxed"
           >
-            Building on their existing partnership, Youth Engineers Initiative and the YMCA are launching an engineering camp for junior high students this summer. Campers will get hands-on experience with YEI's workshop curriculum — building wind turbines, designing truss bridges, and tackling real engineering challenges in a fun, collaborative environment. Beyond the camp, YEI is also making significant internal progress: the Sage Hill chapter is expanding its member base, new curriculum modules are in development, and the organization is laying the groundwork for launching additional school chapters in the fall. This summer marks a turning point for YEI as it grows from a single school club into a broader community program with real reach.
+            Building on their existing partnership, Youth Engineers Initiative and the YMCA are launching an engineering camp for junior high students this summer. Campers will get hands-on experience with YEI's workshop curriculum - building wind turbines, designing truss bridges, and tackling real engineering challenges in a fun, collaborative environment. Beyond the camp, YEI is also making significant internal progress: the Sage Hill chapter is expanding its member base, new curriculum modules are in development, and the organization is laying the groundwork for launching additional school chapters in the fall. This summer marks a turning point for YEI as it grows from a single school club into a broader community program with real reach.
           </p>
 
         </div>
@@ -1268,7 +1267,7 @@ document.addEventListener("DOMContentLoaded", () => {
           data-date="June, 2026"
           data-author="Chris Longo"
           data-title="YEI and YMCA Launch Summer Engineering Camp for Junior High Students"
-          data-content="Building on their existing partnership, Youth Engineers Initiative and the YMCA are launching an engineering camp for junior high students this summer. Campers will get hands-on experience with YEI's workshop curriculum — building wind turbines, designing truss bridges, and tackling real engineering challenges in a fun, collaborative environment. Beyond the camp, YEI is also making significant internal progress: the Sage Hill chapter is expanding its member base, new curriculum modules are in development, and the organization is laying the groundwork for launching additional school chapters in the fall. This summer marks a turning point for YEI as it grows from a single school club into a broader community program with real reach."
+          data-content="Building on their existing partnership, Youth Engineers Initiative and the YMCA are launching an engineering camp for junior high students this summer. Campers will get hands-on experience with YEI's workshop curriculum - building wind turbines, designing truss bridges, and tackling real engineering challenges in a fun, collaborative environment. Beyond the camp, YEI is also making significant internal progress: the Sage Hill chapter is expanding its member base, new curriculum modules are in development, and the organization is laying the groundwork for launching additional school chapters in the fall. This summer marks a turning point for YEI as it grows from a single school club into a broader community program with real reach."
         >
           <div class="h-28">
             <img src="/assets/workshopsphotos/IMG_7980.jpeg" alt="" class="w-full h-full object-cover">
@@ -1293,7 +1292,7 @@ document.addEventListener("DOMContentLoaded", () => {
           data-date="February, 2026"
           data-author="Leo Lin"
           data-title="Students Build a Fully Functional Go-Kart From the Ground Up"
-          data-content="From Fall to Winter, Youth Engineers Initiative members at Sage Hill School took on their most ambitious project yet — designing and building a fully functional go-kart from scratch. Students worked through every stage of the engineering process: sketching initial designs, sourcing materials, welding the frame, wiring the motor, and testing the final product. The project challenged students to apply real mechanical and electrical engineering concepts while working as a team under real constraints. The finished go-kart was a testament to what young engineers can accomplish when given the right challenge."
+          data-content="From Fall to Winter, Youth Engineers Initiative members at Sage Hill School took on their most ambitious project yet - designing and building a fully functional go-kart from scratch. Students worked through every stage of the engineering process: sketching initial designs, sourcing materials, welding the frame, wiring the motor, and testing the final product. The project challenged students to apply real mechanical and electrical engineering concepts while working as a team under real constraints. The finished go-kart was a testament to what young engineers can accomplish when given the right challenge."
         >
           <div class="h-28">
             <img src="/assets/workshopsphotos/gokart.JPG" alt="" class="w-full h-full object-cover">
@@ -1374,7 +1373,7 @@ document.querySelectorAll('.news-card').forEach(card => {
 });
 </script>
 
-         
+
 <!-- Social Media Section -->
 <div class="bg-slate-50 py-16 px-6">
   <div class="max-w-6xl mx-auto">
@@ -1470,7 +1469,7 @@ document.querySelectorAll('.news-card').forEach(card => {
       <div class="max-w-6xl mx-auto px-6 py-16">
         <div class="media-carousel">
           <button type="button" class="media-carousel-button prev" data-media-carousel-prev aria-label="Previous media group">
-            <span aria-hidden="true">←</span>
+            <span aria-hidden="true">&larr;</span>
           </button>
 
           <div class="media-carousel-frame">
@@ -1574,7 +1573,7 @@ document.querySelectorAll('.news-card').forEach(card => {
           </div>
 
           <button type="button" class="media-carousel-button next" data-media-carousel-next aria-label="Next media group">
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">&rarr;</span>
           </button>
         </div>
       </div>
@@ -1593,250 +1592,32 @@ document.querySelectorAll('.news-card').forEach(card => {
       </div>
     </section>
 
-    
 
-    <!-- ==================== PARTNER WITH US ==================== -->
-<section id="page-partner" class="page-section">
+
+    <!-- ==================== CONTACT ==================== -->
+<section id="page-contact" class="page-section">
   <div class="section-inner">
-    <div class="min-h-screen bg-slate-50">
+    <div class="min-h-screen relative overflow-hidden bg-slate-50">
+      <div class="absolute inset-0 opacity-90" style="background:radial-gradient(circle at 12% 20%,#dbeafe 0,transparent 32%),radial-gradient(circle at 88% 82%,#cffafe 0,transparent 30%);"></div>
+      <div class="relative max-w-5xl mx-auto px-6 py-20 md:py-28">
+        <div class="max-w-3xl mx-auto text-center">
 
-      <div class="max-w-6xl mx-auto px-6 py-16">
-
-        <div class="grid md:grid-cols-1 gap-12 items-start">
-
-          <div class="text-center max-w-3xl mx-auto">
-
-            <!-- Title -->
-            <h1 class="text-4xl font-bold mb-4" style="color: var(--primary-blue);">
-              Partner With Us
-            </h1>
-
-            <!-- Intro -->
-            <p class="text-slate-500 mb-6">
-              We collaborate with schools, educators, and organizations to run hands-on STEM workshops,
-              support student programs, and expand engineering education opportunities. If you’re a student interested in getting involved with our program — whether by starting a chapter or exploring other opportunities — 
-  <a href="https://form.jotform.com/251946487673170"
-     target="_blank"
-     rel="noopener noreferrer"
-     class="underline hover:opacity-80"
-     style="color: var(--primary-blue);">
-    click here to get started.
-  </a>
-            </p>
-
-            <!-- FORM -->
-            <form id="partner-form" class="space-y-4 text-left">
-
-              <!-- Name -->
-              <div class="flex flex-col gap-1">
-                <label class="text-sm font-medium text-slate-700">Full Name</label>
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="Your name"
-                  required
-                  class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                >
-              </div>
-
-              <!-- Email -->
-              <div class="flex flex-col gap-1">
-                <label class="text-sm font-medium text-slate-700">Email Address</label>
-                <input
-                  name="email"
-                  type="email"
-                  placeholder="email@example.com"
-                  required
-                  class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                >
-              </div>
-
-              <!-- Organization -->
-              <div class="flex flex-col gap-1">
-                <label class="text-sm font-medium text-slate-700">Organization / School</label>
-                <input
-                  name="organization"
-                  type="text"
-                  placeholder="School or organization name"
-                  required
-                  class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                >
-              </div>
-
-              <!-- Role -->
-              <div class="flex flex-col gap-1">
-                <label class="text-sm font-medium text-slate-700">Your Role</label>
-                <select
-                  name="role"
-                  required
-                  class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                >
-                  <option value="">Select role</option>
-                  <option>Teacher</option>
-                  <option>Program Director</option>
-                  <option>School Administrator</option>
-                  <option>Club Advisor</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <!-- Interest -->
-              <div class="flex flex-col gap-1">
-                <label class="text-sm font-medium text-slate-700">What are you interested in?</label>
-                <select
-                  name="interest"
-                  required
-                  class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                >
-                  <option value="">Select option</option>
-                  <option>Hosting a workshop</option>
-                  <option>Long-term partnership</option>
-                  <option>Guest speaker session</option>
-                  <option>STEM program collaboration</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <!-- Message -->
-              <div class="flex flex-col gap-1">
-                <label class="text-sm font-medium text-slate-700">Tell us about your request</label>
-                <textarea
-                  name="message"
-                  rows="5"
-                  placeholder="Describe your goals, student group size, topics of interest, and any logistics..."
-                  required
-                  class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none"
-                ></textarea>
-              </div>
-
-              <!-- Optional -->
-              <div class="grid md:grid-cols-2 gap-4">
-
-                <div class="flex flex-col gap-1">
-                  <label class="text-sm font-medium text-slate-700">Expected number of students</label>
-                  <input
-                    name="students"
-                    type="number"
-                    placeholder="e.g. 30"
-                    class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                  >
-                </div>
-
-                <div class="flex flex-col gap-1">
-                  <label class="text-sm font-medium text-slate-700">Preferred timeframe</label>
-                  <input
-                    name="timeframe"
-                    type="text"
-                    placeholder="e.g. Spring 2026"
-                    class="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                  >
-                </div>
-
-              </div>
-
-              <!-- Status -->
-              <p id="partner-status" class="text-sm text-slate-500"></p>
-
-              <!-- Submit -->
-              <div class="pt-2">
-                <button
-                  type="submit"
-                  class="w-full md:w-auto py-3 px-6 text-white font-semibold rounded-lg hover:opacity-90 transition"
-                  style="background-color: var(--primary-blue);"
-                >
-                  Submit
-                </button>
-              </div>
-
-            </form>
-
-          </div>
-
+          <p class="text-xs font-bold uppercase tracking-[0.28em] text-blue-600 mb-5">Build the future with us</p>
+          <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6" style="color:var(--primary-blue);">Let's make a bigger impact.</h1>
+          <p class="text-lg md:text-xl leading-relaxed text-slate-600 mb-10">Want to join our team, expand hands-on engineering opportunities, or explore a partnership? We would love to connect.</p>
+          <a href="mailto:youthengineersinitiative@gmail.com?subject=Youth%20Engineers%20Initiative%20Inquiry" class="inline-flex items-center gap-3 rounded-full px-7 py-4 text-base font-bold text-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl" style="background-color:var(--primary-blue);"><i data-lucide="mail" style="width:20px;height:20px;"></i>Email Youth Engineers Initiative</a>
+          <p class="mt-5 text-sm text-slate-500">youthengineersinitiative@gmail.com</p>
         </div>
-
+        <div class="grid md:grid-cols-3 gap-5 mt-16">
+          <article class="rounded-2xl bg-white/90 border border-white p-6 shadow-sm text-left"><i data-lucide="users" class="text-blue-600 mb-4" style="width:28px;height:28px;"></i><h2 class="font-bold text-lg mb-2" style="color:var(--primary-blue);">Join the team</h2><p class="text-sm leading-relaxed text-slate-600">Help shape engineering experiences for young people.</p></article>
+          <article class="rounded-2xl bg-white/90 border border-white p-6 shadow-sm text-left"><i data-lucide="rocket" class="text-blue-600 mb-4" style="width:28px;height:28px;"></i><h2 class="font-bold text-lg mb-2" style="color:var(--primary-blue);">Expand our impact</h2><p class="text-sm leading-relaxed text-slate-600">Bring practical STEM learning to more communities.</p></article>
+          <article class="rounded-2xl bg-white/90 border border-white p-6 shadow-sm text-left"><i data-lucide="heart-handshake" class="text-blue-600 mb-4" style="width:28px;height:28px;"></i><h2 class="font-bold text-lg mb-2" style="color:var(--primary-blue);">Partner with us</h2><p class="text-sm leading-relaxed text-slate-600">Schools and supporters can help us reach further together.</p></article>
+        </div>
       </div>
-
     </div>
-
-    <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
-        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
-          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
-          <div class="flex items-center gap-4">
-            <a href="mailto:youthengineersinitiative@gmail.com" aria-label="Email" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="mail" style="width:16px;height:16px;color:#ffffff"></i></a>
-            <a href="tel:+1(949)283-1677" aria-label="Phone" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="phone" style="width:16px;height:16px;color:#ffffff"></i></a>
-            <a href="https://www.instagram.com/youthengineersinitiative/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61578217094679" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
-          </div>
-        </div>
-      </footer>
-
+    <footer class="text-white py-12 px-6" style="background-color:#e6f4ff;"><div class="max-w-6xl mx-auto flex items-center justify-center gap-6"><img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16"><div class="flex items-center gap-4"><a href="mailto:youthengineersinitiative@gmail.com" aria-label="Email" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="mail" style="width:16px;height:16px;color:#ffffff"></i></a><a href="tel:+1(949)283-1677" aria-label="Phone" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="phone" style="width:16px;height:16px;color:#ffffff"></i></a><a href="https://www.instagram.com/youthengineersinitiative/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a><a href="https://www.facebook.com/profile.php?id=61578217094679" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a></div></div></footer>
   </div>
-</section>
-
-<!-- ==================== CONTACT ==================== -->
-    <section id="page-contact" class="page-section">
-      <div class="section-inner">
-      <div class="min-h-screen bg-slate-50">
-        <div class="max-w-6xl mx-auto px-6 py-16">
-          <div class="grid md:grid-cols-1 gap-12 items-start">
-            <div class="text-center max-w-3xl mx-auto">
-              <h1 class="text-4xl font-bold mb-4" style="color: var(--primary-blue);">We'd Love to Hear From You!</h1>
-              <p class="text-slate-500 mb-8">Whether you're a student, educator, or organization — we'd love to connect with you.
-  If you’re a student interested in getting involved with our program — whether by starting a chapter or exploring other opportunities — 
-  <a href="https://form.jotform.com/251946487673170"
-     target="_blank"
-     rel="noopener noreferrer"
-     class="underline hover:opacity-80"
-     style="color: var(--primary-blue);">
-    click here to get started.
-  </a>
-</p>
-              <form id="contact-form" method="POST" action="/contact" class="space-y-4 text-left">
-                <div class="flex flex-col gap-1">
-                  <label for="contact-email" class="text-sm font-medium text-slate-700 text-left">Email address</label>
-                  <input id="contact-email" name="email" type="email" placeholder="email@example.com" required class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-200">
-                </div>
-
-                <div class="flex flex-col gap-1">
-                  <label for="contact-subject" class="text-sm font-medium text-slate-700 text-left">Subject</label>
-                  <input id="contact-subject" name="subject" type="text" placeholder="Subject" required class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-200">
-                </div>
-
-                <div class="flex flex-col gap-1">
-                  <label for="contact-message" class="text-sm font-medium text-slate-700 text-left">Message</label>
-                  <textarea id="contact-message" name="message" rows="5" placeholder="Your message..." required class="flex-1 w-full px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none"></textarea>
-                </div>
-
-                <p id="contact-status" class="text-sm text-slate-500"></p>
-
-                <div class="pt-2">
-                  <button type="submit" class="w-full md:w-auto py-3 px-6 text-white font-semibold rounded-lg hover:opacity-90 transition" style="background-color: var(--primary-blue);">Submit</button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <!-- Contact CTA removed -->
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
-        <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
-          <img src="/assets/logos/yeilogoheader.png" alt="Youth Engineers Initiative logo" class="h-16">
-          <div class="flex items-center gap-4">
-            <a href="mailto:youthengineersinitiative@gmail.com" aria-label="Email" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="mail" style="width:16px;height:16px;color:#ffffff"></i></a>
-            <a href="tel:+1(949)283-1677" aria-label="Phone" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="phone" style="width:16px;height:16px;color:#ffffff"></i></a>
-            <a href="https://www.instagram.com/youthengineersinitiative/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="instagram" style="width:16px;height:16px;color:#ffffff"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61578217094679" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition" style="background-color:#1d3952;"><i data-lucide="facebook" style="width:16px;height:16px;color:#ffffff"></i></a>
-          </div>
-        </div>
-      </footer>
-      </div>
-    </section>
-
-  </main>
+</section>  </main>
 
   <script>
     // Mobile toggle
@@ -1859,67 +1640,6 @@ document.querySelectorAll('.news-card').forEach(card => {
     const mediaCarouselElements = Array.from(document.querySelectorAll('.media-carousel'));
     let carouselIndex = 0;
     let carouselTimer = null;
-   // CONTACT
-const contactForm = document.getElementById('contact-form');
-const contactStatus = document.getElementById('contact-status');
-
-// PARTNER
-const partnerForm = document.getElementById("partner-form");
-const partnerStatus = document.getElementById("partner-status");
-
-
-// =========================
-// PARTNER FORM HANDLER
-// =========================
-if (partnerForm) {
-  partnerForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const formData = {
-      name: partnerForm.name.value,
-      email: partnerForm.email.value,
-      organization: partnerForm.organization.value,
-      role: partnerForm.role.value,
-      interest: partnerForm.interest.value,
-      message: partnerForm.message.value,
-      students: partnerForm.students.value,
-      timeframe: partnerForm.timeframe.value,
-    };
-
-    try {
-      const res = await fetch("https://youth-engineers-initiative.onrender.com/contact", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(formData),
-});
-
-const text = await res.text();
-let data;
-
-try {
-  data = JSON.parse(text);
-} catch {
-  throw new Error("Server did not return JSON. Response was: " + text);
-}
-
-if (!res.ok) {
-  throw new Error(data.error || "Request failed");
-}
-
-if (partnerStatus) {
-  partnerStatus.textContent = "Message sent successfully!";
-}
-
-partnerForm.reset();
-
-    } catch (err) {
-      if (partnerStatus) partnerStatus.textContent = err.message;
-    }
-  });
-}
-
-    
-
     function updateCarousel() {
       if (!carouselTrack || carouselSlides.length === 0) return;
 
@@ -2043,59 +1763,6 @@ partnerForm.reset();
 
     updateCarousel();
     startCarousel();
-
-    if (contactForm) {
-      contactForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const email = document.getElementById('contact-email').value.trim();
-        const subject = document.getElementById('contact-subject').value.trim();
-        const message = document.getElementById('contact-message').value.trim();
-
-        if (!email || !subject || !message) {
-          if (contactStatus) {
-            contactStatus.textContent = 'Please fill out your email, subject, and message.';
-          }
-          return;
-        }
-
-        if (contactStatus) {
-          contactStatus.textContent = 'Sending your message...';
-        }
-
-        fetch("https://youth-engineers-initiative.onrender.com/contact", {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ email, subject, message }),
-})
-  .then(async (response) => {
-  let payload = {};
-
-  try {
-    payload = await response.json();
-  } catch (e) {
-    payload = { error: "Server did not return JSON" };
-  }
-
-    if (!response.ok) {
-      throw new Error(payload.error || 'Unable to send message right now.');
-    }
-
-    if (contactStatus) {
-      contactStatus.textContent = 'Message sent successfully.';
-    }
-
-    contactForm.reset();
-  })
-  .catch((error) => {
-    if (contactStatus) {
-      contactStatus.textContent = error.message;
-    }
-  });
-});
-}
 
     function updateParallax() {
       if (prefersReducedMotion || parallaxLayers.length === 0) return;

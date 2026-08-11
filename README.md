@@ -44,3 +44,15 @@ Follow us on social media and visit our website to learn more about our programs
 ---
 
 Together, we're empowering younger generations to become leaders through engineering and innovation.
+
+## Secure contact forms
+
+Contact and partnership submissions are handled by the server-side `/api/contact` Vercel function. The browser only sends form data to this same-site endpoint; it never receives an email-service key.
+
+Configure these Vercel environment variables before deploying:
+
+- `RESEND_API_KEY` — API key from Resend.
+- `MAIL_FROM` — a sender address on a domain verified in Resend, for example `Youth Engineers Initiative <contact@youthengineersinitiative.org>`.
+- `MAIL_TO` — `youthengineersinitiative@gmail.com`.
+
+Do not add any secret with a `REACT_APP_` prefix. The endpoint uses a honeypot, request-size limit, server-side validation, and a per-IP rate limit to reduce spam.
