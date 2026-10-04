@@ -551,6 +551,43 @@
               <p class="font-bold text-sm" style="color: var(--primary-blue);">Dana Hills High School</p>
               <p class="text-xs text-slate-400">Dana Point, CA</p>
             </div>
+
+                        <!-- San Marino High School -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+              <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-3 flex items-center justify-center">
+                <img src="/assets/logos/sanmarino.png" alt="San Marino High School" class="w-full h-full object-contain p-2">
+              </div>
+              <p class="font-bold text-sm" style="color: var(--primary-blue);">San Marino High School</p>
+              <p class="text-xs text-slate-400">San Marino, CA</p>
+            </div>
+
+            <!-- Northwood High School -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+              <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-3 flex items-center justify-center">
+                <img src="/assets/logos/northwood.jpg" alt="Northwood High School" class="w-full h-full object-contain p-2">
+              </div>
+              <p class="font-bold text-sm" style="color: var(--primary-blue);">Northwood High School</p>
+              <p class="text-xs text-slate-400">Irvine, CA</p>
+            </div>
+
+            <!-- Florida Region -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+              <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-3 flex items-center justify-center">
+                <span class="text-xs font-bold text-slate-400">FL</span>
+              </div>
+              <p class="font-bold text-sm" style="color: var(--primary-blue);">Florida Region</p>
+              <p class="text-xs text-slate-400">Regional Chapter</p>
+            </div>
+
+            <!-- NorCal Region -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 text-center">
+              <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-3 flex items-center justify-center">
+                <span class="text-xs font-bold text-slate-400">NC</span>
+              </div>
+              <p class="font-bold text-sm" style="color: var(--primary-blue);">NorCal Region</p>
+              <p class="text-xs text-slate-400">Regional Chapter</p>
+            </div>
+
           </div>
         </div>
 
@@ -618,28 +655,45 @@
 <section id="page-workshops" class="page-section">
   <div class="section-inner">
 
-    <div class="max-w-6xl mx-auto px-6 py-16">
-      <h1 class="text-4xl font-bold text-center mb-3" style="color: var(--primary-blue);">Workshops</h1>
-
-      <p class="text-center text-slate-500 mb-12 max-w-3xl mx-auto">
-        Youth Engineers Initiative workshops introduce students to engineering through hands-on projects, teamwork, and creative problem-solving. Every workshop is designed to make STEM engaging, accessible, and memorable.
-      </p>
+    <div class="parallax-frame relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <video class="hero-video" data-parallax-speed="0.14" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="/assets/videos/Workshop Header.mp4" type="video/mp4">
+          <source src="/assets/videos/Workshop Header.mov" type="video/quicktime">
+        </video>
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.14" style="z-index:1;"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.1" style="z-index:1;"></div>
+        <div class="absolute inset-0 bg-slate-950/50"></div>
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, #ffffff 1px, transparent 1px), radial-gradient(circle at 80% 50%, #ffffff 1px, transparent 1px); background-size: 60px 60px;"></div>
+        <div class="max-w-3xl mx-auto" style="position:relative; z-index:2;">
+          <h1 class="text-5xl md:text-6xl font-bold mb-4">Workshops</h1>
+          <p style="color: var(--light-blue)" class="text-2xl md:text-xl mb-10">Youth Engineers Initiative workshops introduce students to engineering through hands-on projects, teamwork, and creative problem-solving. Every workshop is designed to make STEM engaging, accessible, and memorable.</p>
+        </div>
+      </div>
+ <div class="max-w-6xl mx-auto px-6 py-16">
 
       <div class="space-y-10">
 
         <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row gap-6 items-center">
-          <div class="flex-1">
-            <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">What Is A Workshop?</h3>
-            <p class="text-slate-500 text-sm leading-relaxed">
-              Workshops are guided engineering experiences where students learn by building, testing, and improving designs. Students gain exposure to engineering principles while developing creativity, collaboration, and critical thinking skills.
-            </p>
-          </div>
+  <div class="flex-1">
+    <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">What Is A Workshop?</h3>
 
-          <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden"
-               style="width:18rem;height:11.5rem;">
-            <img src="/assets/workshopsphotos/IMG_7022.jpeg" alt="Workshop photo 1" class="w-full h-full object-cover">
-          </div>
-        </div>
+    <p class="text-slate-500 text-sm leading-relaxed mb-4">
+      Workshops are guided engineering experiences where students learn by building, testing, and improving designs. Students gain exposure to engineering principles while developing creativity, collaboration, and critical thinking skills.
+    </p>
+
+    <button onclick="document.getElementById('workshopVideo').play()"
+      class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">
+      WATCH EXAMPLE WORKSHOP VIDEO
+    </button>
+  </div>
+
+  <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden"
+       style="width:18rem;height:11.5rem;">
+    <video id="workshopVideo" class="w-full h-full object-cover" preload="metadata" playsinline>
+      <source src="/assets/videos/ExWorkshop.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
 
         <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row-reverse gap-6 items-center">
           <div class="flex-1">
@@ -682,7 +736,7 @@
 
       </div>
     </div>
-
+</div>
     <!-- Footer -->
       <footer class="text-white py-12 px-6" style="background-color: #e6f4ff;">
         <div class="max-w-6xl mx-auto flex items-center justify-center gap-6">
@@ -702,13 +756,23 @@
 <!-- ==================== PROJECTS ==================== -->
 <section id="page-projects" class="page-section">
   <div class="section-inner">
+    <div class="parallax-frame relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
+        <video class="hero-video" data-parallax-speed="0.14" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="/assets/videos/Projects Header.mp4" type="video/mp4">
+          <source src="/assets/videos/Projects Header.mov" type="video/quicktime">
+        </video>
+        <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.14" style="z-index:1;"></div>
+        <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.1" style="z-index:1;"></div>
+        <div class="absolute inset-0 bg-slate-950/50"></div>
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, #ffffff 1px, transparent 1px), radial-gradient(circle at 80% 50%, #ffffff 1px, transparent 1px); background-size: 60px 60px;"></div>
+        <div class="max-w-3xl mx-auto" style="position:relative; z-index:2;">
+          <h1 class="text-5xl md:text-6xl font-bold mb-4">Projects</h1>
+          <p style="color: var(--light-blue)" class="text-2xl md:text-xl mb-10">Student-led engineering projects that extend learning beyond the workshop environment.</p>
+        </div>
+      </div>
 
     <div class="max-w-6xl mx-auto px-6 py-16">
-      <h1 class="text-4xl font-bold text-center mb-3" style="color: var(--primary-blue);">Projects</h1>
-
-      <p class="text-center text-slate-500 mb-12">
-        Student-led engineering projects that extend learning beyond the workshop environment.
-      </p>
+      
 
       <div class="space-y-10">
 
@@ -921,6 +985,40 @@
   </div>
 </div>
 
+<!-- Water Filter -->
+<div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row-reverse gap-6 items-center">
+  <div class="flex-1">
+    <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Water Filter</h3>
+    <p class="text-slate-500 text-sm leading-relaxed mb-4">
+      Explore the engineering behind clean water by designing and testing your own water filtration system while learning about filtration, materials, and environmental engineering.
+    </p>
+    <a href="https://docs.google.com/presentation/d/1mLW2QTum8xcQ_tUCpXVbPbplL5ocuH98bhouHppOG9Q/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">
+      LINK
+    </a>
+  </div>
+
+  <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width:18rem; height:11.5rem;">
+    <img src="/assets/workshopcovers/waterfiltercover.png" alt="Water Filter cover" class="w-full h-full object-cover">
+  </div>
+</div>
+
+<!-- Tall Tower Challenge -->
+<div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col md:flex-row gap-6 items-center">
+  <div class="flex-1">
+    <h3 class="text-xl font-bold mb-2" style="color: var(--primary-blue);">Tall Tower Challenge</h3>
+    <p class="text-slate-500 text-sm leading-relaxed mb-4">
+      Design and build the tallest free-standing tower possible using limited materials while keeping the base as small as possible. Explore structural engineering, stability, forces, material efficiency, and the engineering design process.
+    </p>
+    <a href="https://docs.google.com/presentation/d/1IMgMw6qdMb7ka2ZrlDPk4P2bgrn6_lyP-jLLBKXwC_M/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition">
+      LINK
+    </a>
+  </div>
+
+  <div class="w-full md:flex-shrink-0 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden" style="width:18rem; height:11.5rem;">
+    <img src="/assets/workshopcovers/talltowercover.png" alt="Tall Tower Challenge cover" class="w-full h-full object-cover">
+  </div>
+</div>
+
 
 
         </div>
@@ -947,8 +1045,8 @@
       <!-- Hero -->
       <div class="parallax-frame relative text-white py-24 px-6 text-center overflow-hidden" style="background-color: var(--primary-blue);">
         <video class="hero-video" data-parallax-speed="0.14" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-          <source src="/assets/videos/aboutpagevideo.mp4" type="video/mp4">
-          <source src="/assets/videos/aboutpagevideo.mov" type="video/quicktime">
+          <source src="/assets/videos/Impact Header.mp4" type="video/mp4">
+          <source src="/assets/videos/Impact Header.mov" type="video/quicktime">
         </video>
         <div class="parallax-layer parallax-layer--soft" data-parallax-speed="0.14" style="z-index:1;"></div>
         <div class="parallax-layer parallax-layer--orb" data-parallax-speed="-0.1" style="z-index:1;"></div>
@@ -1026,13 +1124,13 @@ next generation of innovators.
       <!-- Students -->
       <div class="bg-white/10 rounded-xl p-6">
         <p class="text-xs uppercase tracking-widest text-blue-200 mb-2">Students Engaged</p>
-        <p class="text-3xl font-bold counter" data-target="250" data-plus="true">0+</p>
+        <p class="text-3xl font-bold counter" data-target="500" data-plus="true">0+</p>
       </div>
 
       <!-- Leaders -->
       <div class="bg-white/10 rounded-xl p-6">
         <p class="text-xs uppercase tracking-widest text-blue-200 mb-2">Leaders &amp; Mentors</p>
-        <p class="text-3xl font-bold counter" data-target="25" data-plus="true">0+</p>
+        <p class="text-3xl font-bold counter" data-target="100" data-plus="true">0+</p>
       </div>
 
       <!-- Volunteer Hours -->
@@ -1044,25 +1142,25 @@ next generation of innovators.
       <!-- Schools -->
       <div class="bg-white/10 rounded-xl p-6">
         <p class="text-xs uppercase tracking-widest text-blue-200 mb-2">Schools Reached</p>
-        <p class="text-3xl font-bold counter" data-target="15">0</p>
+        <p class="text-3xl font-bold counter" data-target="20">0</p>
       </div>
 
       <!-- Lesson Plans -->
       <div class="bg-white/10 rounded-xl p-6">
         <p class="text-xs uppercase tracking-widest text-blue-200 mb-2">Lesson Plans Created</p>
-        <p class="text-3xl font-bold counter" data-target="7">0</p>
+        <p class="text-3xl font-bold counter" data-target="9">0</p>
       </div>
 
       <!-- Chapters -->
       <div class="bg-white/10 rounded-xl p-6">
         <p class="text-xs uppercase tracking-widest text-blue-200 mb-2">High School Chapters</p>
-        <p class="text-3xl font-bold counter" data-target="3">0</p>
+        <p class="text-3xl font-bold counter" data-target="7">0</p>
       </div>
 
       <!-- Partners -->
       <div class="bg-white/10 rounded-xl p-6">
         <p class="text-xs uppercase tracking-widest text-blue-200 mb-2">Community Partners</p>
-        <p class="text-3xl font-bold counter" data-target="4">0</p>
+        <p class="text-3xl font-bold counter" data-target="6">0</p>
       </div>
 
       <!-- Year -->
@@ -1143,6 +1241,10 @@ document.addEventListener("DOMContentLoaded", () => {
               <img src="assets/logos/allamericanboyschorus.jpg" alt="All American Boys Chorus" class="w-full h-full object-contain p-2"></div>
             <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs text-center p-2">
               <img src="assets/logos/soy.png" alt="Save Our Youth" class="w-full h-full object-contain p-2"></div>
+            <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs text-center p-2">
+              <img src="assets/logos/higherground.jpg" alt="Higher Ground" class="w-full h-full object-contain p-2"></div>
+            <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs text-center p-2">
+              <img src="assets/logos/kidworks.png" alt="KidWorks" class="w-full h-full object-contain p-2"></div>
           </div>
         </div>
       </div>
